@@ -7,14 +7,13 @@ public class Navire {
 	private int nbTouchees;
 	
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
-		
 		if (estVertical) {
 			if (longueur + debut.getColonne() > 25) {
 				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
 			}
 			else {
-			debut = new Coordonnee(debut.getLigne(), debut.getColonne());
-			fin = new Coordonnee(this.debut.getLigne(), longueur + this.debut.getColonne());
+			this.debut = new Coordonnee(debut.getLigne(), debut.getColonne());
+			this.fin = new Coordonnee(this.debut.getLigne(), longueur + this.debut.getColonne());
 		
 			}
 		}
@@ -23,18 +22,49 @@ public class Navire {
 				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
 			}
 			else {
-			debut = new Coordonnee(debut.getLigne(), debut.getColonne());
-			fin = new Coordonnee(longueur + this.debut.getLigne(), this.debut.getColonne());
+			this.debut = new Coordonnee(debut.getLigne(), debut.getColonne());
+			this.fin = new Coordonnee(longueur + this.debut.getLigne(), this.debut.getColonne());
 			}
 		}
 	}
 	
 	public String toString() {
-		
+		int colonne = fin.getColonne() - debut.getColonne();
+		int ligne = fin.getLigne() - debut.getLigne();
+		if (colonne == 0)
+		return("Navire(" + this.debut.toString() + ", " + ligne +", "+ " horizontal)");
+		else return("Navire(" + this.debut.toString() + ", " + colonne +", "+ " vertical)");
 	}
 	
+	public Coordonnee getDebut() {
+		return this.debut;
+	}
+	
+	public Coordonnee getFin() {
+		return this.fin;
+	}
+	
+	public boolean contient(Coordonnee c) {
+		int colonne = fin.getColonne() - debut.getColonne();
+		int ligne = fin.getLigne() - debut.getLigne();
+		if (colonne == 0 && c.getLigne() >= this.debut.getLigne() && c.getLigne() <= this.fin.getLigne()) { //navire horizontal
+			return true;
+		}
+		else if (ligne == 0 && c.getColonne() >= this.debut.getColonne() && c.getColonne() <= this.fin.getColonne()) { //navire vertical
+			return true;
+		}
+		else return false;
+		
+
+	}
+	
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Coordonnee depart = new Coordonnee(2,5);
+		Coordonnee contenue = new Coordonnee(4,2);
+		Navire petitNavire = new Navire(depart,4,false);
+		//System.out.println(petitNavire.contient(contenue));
+		System.out.println(petitNavire.toString());
 
 	}
 
