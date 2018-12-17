@@ -70,12 +70,10 @@ public class Navire {
 				&& debut.getColonne() == c.getColonne()) { // si this est verticale, on vérifie que
 															// this.debut.ligne<c.ligne<this.fin.ligne et que
 															// this.colonne == c.colonne
-			System.out.println(1);
 			return true;
 		} else if (ligne == 0 && c.getColonne() >= debut.getColonne() && c.getColonne() <= fin.getColonne()
 				&& debut.getLigne() == c.getLigne()) { // si this est horizontale pareil qu'au dessus en inversant
 														// lignes/colonnes
-			System.out.println(2);
 			return true;
 		} else
 			return false;
@@ -95,7 +93,8 @@ public class Navire {
 		if (colonne2 == 0) { // Si this est verticale
 			for (int i = 0; i < ligne2 + 1; i++) {
 
-				if (n.contient(parcours))	//On check autant de fois que This a de cases si n contient cette case grace à la Coordo de parcours
+				if (n.contient(parcours)) // On check autant de fois que This a de cases si n contient cette case grace
+											// à la Coordo de parcours
 
 					return true;
 
@@ -108,7 +107,7 @@ public class Navire {
 		if (ligne2 == 0) { // Si this est horizontale
 			for (int i = 0; i < colonne2 + 1; i++) {
 
-				if (n.contient(parcours))	//Pareil qu'au dessus
+				if (n.contient(parcours)) // Pareil qu'au dessus
 
 					return true;
 
@@ -121,21 +120,103 @@ public class Navire {
 
 	}
 
+	public boolean recoitTir(Coordonnee c) {
+		if (!this.contient(c))
+			return false;
+		else {
+			boolean dejavu = false;
+			int colonne = fin.getColonne() - debut.getColonne();
+			int ligne = fin.getLigne() - debut.getLigne();
+			int longueur = (colonne == 0) ? ligne + 1 : colonne + 1;
+			if (partiesTouchees == null) {
+				partiesTouchees = new Coordonnee[longueur];
+
+			}
+
+			for (int i = 0; i < longueur; i++) {
+				if (partiesTouchees[i] == c)
+					dejavu = true;
+			}
+
+			if (!dejavu) {
+				nbTouchees += 1;
+				partiesTouchees[nbTouchees - 1] = c;
+			}
+
+			return true;
+		}
+	}
+
+	public String afficherTab() { // POur afficher en string le []partiesTouchees
+		String strPartiesTouchees = "";
+
+		for (int j = 0; j < partiesTouchees.length; j++) {
+			if (partiesTouchees[j] != null) {
+				strPartiesTouchees = strPartiesTouchees + "[" + partiesTouchees[j].getColonne() + "-"
+						+ partiesTouchees[j].getLigne() + "]";
+			}
+
+		}
+		return strPartiesTouchees;
+	}
+
+	public boolean estTouche(Coordonnee c) {
+		if (partiesTouchees == null)
+			return false;
+		else
+			for (int i = 0; i < partiesTouchees.length; i++) {
+				if (partiesTouchees[i] == c)
+					return true;
+			}
+		return false;
+	}
+
+	public boolean estTouche() {
+		if (partiesTouchees == null)
+			return false;
+		else
+			return true;
+	}
+
+	public boolean estCoule() {
+		if (partiesTouchees == null)
+			return false;
+		else if ((nbTouchees) == partiesTouchees.length)
+			return true;
+		else
+			return false;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Coordonnee deb1 = new Coordonnee(0, 0);
 		Navire nav1 = new Navire(deb1, 2, false);
 		Coordonnee deb2 = new Coordonnee(0, 0);
-		Navire nav2 = new Navire(deb2, 2, true);
-		
+		Coordonnee deb3 = new Coordonnee(1, 0);
+		Coordonnee deb4 = new Coordonnee(2, 0);
+		Coordonnee deb5 = new Coordonnee(3, 0);
+		Coordonnee deb6 = new Coordonnee(3, 0);
 
-		System.out.println(nav1.debut);
-		System.out.println(nav1.fin);
-		System.out.println(nav2.debut);
-		System.out.println(nav2.fin);
+		Navire nav2 = new Navire(deb2, 2, true);
+
 		// System.out.println(nav1.touche(nav2));
 		// System.out.println(nav1.contient(deb2));
-		System.out.println(nav1.chevauche(nav2));
+		// System.out.println(nav1.chevauche(nav2));
+		System.out.println(nav1.recoitTir(deb2));
+//		System.out.println(nav1.afficherTab());
+
+		System.out.println(nav1.recoitTir(deb3));
+//		System.out.println(nav1.afficherTab());
+
+		System.out.println(nav1.recoitTir(deb4));
+//		System.out.println(nav1.afficherTab());
+
+		System.out.println(nav1.recoitTir(deb5));
+//		System.out.println(nav1.afficherTab());
+
+		System.out.println(nav1.estCoule());
+		System.out.println(nav2.estCoule());
+
 	}
 
 }
