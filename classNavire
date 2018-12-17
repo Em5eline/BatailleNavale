@@ -3,7 +3,7 @@ package batailleNavale;
 public class Navire {
 	private Coordonnee debut;
 	private Coordonnee fin;
-	private Coordonne[] partiessTouchees;
+	private Coordonnee[] partiesTouchees;
 	private int nbTouchees;
 	
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
@@ -13,9 +13,9 @@ public class Navire {
 				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
 			}
 			else {
-			this.debut = debut;
-			fin.ligne = this.debut.ligne;
-			fin.colonne = longueur + this.debut.colonne;
+			debut = new Coordonnee(debut.getLigne(), debut.getColonne());
+			fin = new Coordonnee(this.debut.getLigne(), longueur + this.debut.getColonne());
+		
 			}
 		}
 		else {
@@ -23,13 +23,15 @@ public class Navire {
 				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
 			}
 			else {
-			this.debut = debut;
-			fin.ligne= longueur + this.debut.ligne;
-			fin.colonne = this.debut.colonne;
+			debut = new Coordonnee(debut.getLigne(), debut.getColonne());
+			fin = new Coordonnee(longueur + this.debut.getLigne(), this.debut.getColonne());
 			}
 		}
 	}
 	
+	public String toString() {
+		
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
