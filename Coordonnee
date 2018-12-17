@@ -1,0 +1,69 @@
+package batailleNavale;
+
+public class Coordonnee implements Comparable<Coordonnee> {
+				
+	//ATRIBUTS
+	
+	private int ligne;
+	private int colonne;
+	
+	//CONSTRUCTEURS
+	
+	public Coordonnee(int ligne, int colonne) {
+		if ((ligne<0) || (ligne >25))
+			throw new IllegalArgumentException ("Il faut revoir votre ligne !");
+		if ((colonne<0) || (colonne>25))
+			throw new IllegalArgumentException ("Les colonnes c'est n'importe quoi là !");
+		this.ligne = ligne;
+		this.colonne = colonne;
+	}
+
+	public Coordonnee(String s) {
+		
+		this(Integer.parseInt(s.substring(1, s.length()))-1,s.charAt(0) - 'A');
+	}
+	
+	//METHODS
+	
+	
+	public String toString() {
+
+		return String.valueOf((char)(this.colonne + 'A') + String.valueOf(this.ligne + 1)); 
+	}
+	
+	public int getColonne() {
+		return this.colonne;
+	}
+	
+	public int getLigne() {
+		return this.ligne;
+	}
+	
+	public boolean equals(Object obj) {
+		return (obj instanceof Coordonnee) && (this.ligne == ((Coordonnee)obj).ligne && this.colonne == ((Coordonnee)obj).colonne);
+	}
+	
+	public boolean voisine (Coordonnee c) {
+		return ((c.ligne == this.ligne + 1 || c.ligne == this.ligne - 1) ^ (c.colonne == this.colonne + 1 || c.colonne == this.colonne - 1));
+	}
+	
+	public int compareTo (Coordonnee c) {
+		if (c.ligne < this.ligne || ((c.ligne == this.ligne) && (c.colonne < this.colonne)))
+			return -1;
+		else if (c.ligne > this.ligne || ((c.ligne == this.ligne) && (c.colonne > this.colonne)))
+			return 1;
+		else 
+			return 0;
+	}
+	
+	public static void main(String[] args) {
+		Coordonnee test3=new Coordonnee("AB21");
+		Coordonnee test = new Coordonnee(1,1);
+		Coordonnee test2= new Coordonnee (1,2);
+		//System.out.println(test.voisine(test2));
+		//System.out.println(test2);
+		System.out.println(test3);
+		System.out.println(test.compareTo(test2));
+	}
+
+}
