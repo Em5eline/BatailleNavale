@@ -3,10 +3,35 @@ package batailleNavale;
 public class Navire {
 	private Coordonnee debut;
 	private Coordonnee fin;
-	private Coordonne[] partiessTouchees
+	private Coordonne[] partiessTouchees;
+	private int nbTouchees;
+	
+	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
+		
+		if (estVertical) {
+			if (longueur + debut.getColonne() > 25) {
+				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
+			}
+			else {
+			this.debut = debut;
+			fin.ligne = this.debut.ligne;
+			fin.colonne = longueur + this.debut.colonne;
+			}
+		}
+		else {
+			if (longueur + debut.getLigne() > 25) {
+				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
+			}
+			else {
+			this.debut = debut;
+			fin.ligne= longueur + this.debut.ligne;
+			fin.colonne = this.debut.colonne;
+			}
+		}
+	}
 	
 	
-public static void main(String[] args) {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
