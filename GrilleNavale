@@ -1,49 +1,43 @@
-package batailleNavale;
-
 public class GrilleNavale {
-	
+
+
 	private Navire[] navires;
 	private int nbNavires;
 	private int taille;
 	private Coordonnee[] tirsRecus;
 	private int nbTirsRecus;
 	
-	public GrilleNavale(int taille, int[] taillesNavires) {
+	public GrilleNavale(int taille, int[]taillesNavires) {
 		
 	}
 	
-	public GrilleNavale (int taille, int nbNavires) {
-		this.taille = taille;
-		this.nbNavires = nbNavires;
+	public GrilleNavale(int taille, int nbNavires) {
+		this.taille=taille;
+		nbNavires=0;
+		this.navires =new Navire [nbNavires];
+		
 	}
 	
 	public String toString() {
-		String Newligne=System.getProperty("line.separator");
-		String s = "   ";
-		int l = 1;
-		char car = 'A';
-		
-		for (int i=0; i<taille ; i++) {
-			s = s + car + " ";
-			car++;	
+		StringBuffer grilleNavale=new StringBuffer ("   ");
+		char c='A';
+		int l=1;
+		for (int i=0;i<this.taille;i++) {
+			grilleNavale = grilleNavale.append(c);
+			grilleNavale = grilleNavale.append(' ');
+			c++;	
 		}
 		
-		for (int i=0; i<taille ; i++) {
-			if (l < 10)
-				s = s + System.getProperty("line.separator") + " "+ l;
-			else 
-				s = s + System.getProperty("line.separator") + l;
+		for (int j=0;j<this.taille;j++) {
+			
+			grilleNavale = grilleNavale.append("\n");
+			if (l<10)
+				grilleNavale = grilleNavale.append(' ');
+			grilleNavale = grilleNavale.append(l);
 			l++;
-			for (int j=0 ; j<taille ; j++) {
-				s = s + " .";
+			for (int k=0; k<this.taille;k++) {
+				grilleNavale=grilleNavale.append(" .");
 			}
 		}
-		
-		return s;
+			return grilleNavale.toString();
 	}
-	
-	public static void main(String[] args) {
-	GrilleNavale test = new GrilleNavale(10,1);
-	System.out.println(test.toString());
-	}
-}
