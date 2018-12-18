@@ -11,11 +11,11 @@ public class GrilleNavale {
 		
 	}
 	
-	public GrilleNavale(int taille, int nbNavires) {
-		this.taille=taille;
-		nbNavires=0;
-		this.navires =new Navire [nbNavires];
-		
+	public GrilleNavale(int taille, int navMax) {
+		this.taille = taille;
+		this.nbNavires = 0;
+		this.navires = new Navire[navMax];
+
 	}
 	
 	public String toString() {
