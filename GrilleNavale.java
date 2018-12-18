@@ -64,6 +64,7 @@ public class GrilleNavale {
 		if (nbNavires == this.navires.length)
 			return false;
 		
+		// sinon on l'ajoute !
 		this.navires[this.nbNavires] = n;
 		// on incrémente le nombre de navires
 		this.nbNavires++;
