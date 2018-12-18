@@ -21,7 +21,7 @@ public class Navire {
 				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
 			} else {
 				this.debut = new Coordonnee(debut.getColonne(), debut.getLigne());
-				this.fin = new Coordonnee(this.debut.getColonne(), longueur + this.debut.getLigne());
+				this.fin = new Coordonnee(this.debut.getColonne(), longueur + this.debut.getLigne()-1);
 
 			}
 		} else {
@@ -29,7 +29,7 @@ public class Navire {
 				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
 			} else {
 				this.debut = new Coordonnee(debut.getColonne(), debut.getLigne());
-				this.fin = new Coordonnee(longueur + this.debut.getColonne(), this.debut.getLigne());
+				this.fin = new Coordonnee(longueur + this.debut.getColonne()-1, this.debut.getLigne());
 			}
 		}
 	}
@@ -42,9 +42,9 @@ public class Navire {
 		int colonne = fin.getColonne() - debut.getColonne();
 		int ligne = fin.getLigne() - debut.getLigne();
 		if (colonne == 0)
-			return ("Navire(" + this.debut.toString() + ", " + ligne + ", " + " vertical)");
+			return ("Navire(" + this.debut.toString() + ", " + (ligne +1)+ ", " + " vertical)");
 		else
-			return ("Navire(" + this.debut.toString() + ", " + colonne + ", " + " horizontal)");
+			return ("Navire(" + this.debut.toString() + ", " + (colonne+1) + ", " + " horizontal)");
 	}
 
 	/***************************************************
