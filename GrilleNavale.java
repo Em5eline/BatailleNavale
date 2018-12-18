@@ -41,3 +41,33 @@ public class GrilleNavale {
 		}
 			return grilleNavale.toString();
 	}
+	
+	public boolean ajouteNavire(Navire n) {
+		
+		// si le nouveau navire depasse la grille
+		if (n.getDebut().getLigne() >= this.taille || n.getDebut().getLigne() < 0 || n.getDebut().getColonne() >= this.taille
+				|| n.getFin().getColonne() < 0 || n.getFin().getLigne() >= this.taille || n.getFin().getColonne() >= this.taille) {
+			return false;
+		}
+		
+		// on parcourt le tableau de navires
+		for (int c = 0 ; c < this.navires.length; c++) {
+			// si navire présent
+			if (this.navires[c] != null) {
+				// si un navire est touché ou chevauché alors false
+				if (this.navires[c].touche(n) || this.navires[c].chevauche(n))
+					return false;
+			} 
+		}// end for
+		
+		// si tableau plein impossible de rajouter un navire
+		if (nbNavires == this.navires.length)
+			return false;
+		
+		this.navires[this.nbNavires] = n;
+		// on incrémente le nombre de navires
+		this.nbNavires++;
+		return true;
+	}
+
+}
