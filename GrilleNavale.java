@@ -44,7 +44,7 @@ public class GrilleNavale {
 	
 	/**
 	 * Retourne une String représentant this. On souhaite obtenir une représentation
-s'affichant sur la console de la façon suivante :
+	   s'affichant sur la console de la façon suivante :
 					 A B C D E F G H I J
 					1 . . . . . . . . . .
 					2 . . . # # # . . . .
@@ -177,6 +177,7 @@ s'affichant sur la console de la façon suivante :
 		return true;
 	}
 	
+
 	/**
 	 * Place automatiquement et aléatoirement taillesNavires.length navires dont les
 	   tailles sont données dans taillesNavire.
@@ -184,8 +185,33 @@ s'affichant sur la console de la façon suivante :
 	 */
 	
 	public void placementAuto(int[] taillesNavires) {
-		
+		if (taillesNavires.length > navires.length)
+			throw new IllegalArgumentException("Trop de bâteaux pour cette grille");
+		else {
+			for (int i = 0; i < taillesNavires.length; i++) {
+				int col = (int) (Math.random() * taille);
+				int lig = (int) (Math.random() * taille);
+
+				Coordonnee coord = new Coordonnee(col, lig);
+				double orient = Math.random() + 0.05;
+				boolean verticalitude;
+				if (orient > 0.5)
+					verticalitude = true;
+				else
+					verticalitude = false;
+				Navire nav = new Navire(coord, taillesNavires[i], verticalitude);
+				System.out.println(nav);
+				if (ajouteNavire(nav) == false) {
+					System.out.println("ca marche pas...");
+					i -= 1;
+				}
+
+			}
+
+		}
+
 	}
+
 
 	/**
 	 * Retourne true si et seulement si c est dans this.
@@ -247,7 +273,6 @@ s'affichant sur la console de la façon suivante :
 		return strTirsRecus;
 	}
 	
-// _______________________________________________________________________________________________________________________________________________________
 
 		/**
 		 * Ajoute c aux tirs reçus de this si nécessaire. Retourne true si et seulement si c ne
@@ -256,12 +281,18 @@ s'affichant sur la console de la façon suivante :
 		 * @return : true ou false.
 		 */
 	
-		public boolean recoitTir(Coordonnee c) {
-			ajouteDansTirsRecus(c);
-			for (int i = 0; i<navires.length;i++)
-				if (navires[i].contient(c))
-					return true;
-				return false;
+	public boolean recoitTir(Coordonnee c) {
+		
+		for(int i=0; i<nbNavires; i++) {
+			System.out.println("dans le for");
+			if(navires[i].contient(c)) {
+				System.out.println("dans le if");
+				ajouteDansTirsRecus(c);
+				return true;			
+			}
+		}
+		ajouteDansTirsRecus(c);
+		return false;
 		}
 
 		/**
@@ -270,14 +301,14 @@ s'affichant sur la console de la façon suivante :
 		 * @return
 		 */
 		
-		public boolean estTouche(Coordonnee c) {
-			int count = 0; // initialisation compte de navires touché
-			for (int i = 0; i < navires.length; i++) { // parcours de la totalité des navires de la grille
-				if (this.navires[i].estTouche(c)) // si le navire i de cette grille est touché en c
+	public boolean estTouche(Coordonnee c) {
+		int count = 0; // initialisation compte de navires touché
+		for (int i = 0; i < navires.length; i++) { // parcours de la totalité des navires de la grille
+			if (this.navires[i].estTouche(c)) // si le navire i de cette grille est touché en c
 					count++; // alors navire i touché et compte +1
-			}
-			return count == 1; // retourne vrai si un seul navire dans la grille a été touché en c
 		}
+		return count == 1; // retourne vrai si un seul navire dans la grille a été touché en c
+	}
 
 		/**
 		 * 
@@ -286,10 +317,7 @@ s'affichant sur la console de la façon suivante :
 		 */
 		
 		public boolean estALEau(Coordonnee c) {
-			if (this.estDansGrille(c) && !this.estDansTirsRecus(c))
-				return true;
-			else
-				return false;
+			return !(this.estTouche(c)); 
 		}
 
 		/**
@@ -314,39 +342,19 @@ s'affichant sur la console de la façon suivante :
 		 */
 		
 		public boolean perdu() {
-			int count = 0; // initialisation compte de navires coulés
-			for (int i = 0; i < navires.length; i++) { // parcours de la totalité des navires de la grille
-				if (this.estCoule(navires[i].getDebut())) // si le navire i de cette grille est touché à son début et est
-															// coulé
-					count++; // alors navire i coulé et compte +1
-			}
-			return count == navires.length; // retourne vrai si tous les navires sont coulés
-		}
-	
-// _______________________________________________________________________________________________________________________________________________________
+			for (int i = 0; i < navires.length; i++)
+				if (!(navires[i].estCoule()))
+					return false;
+				return true;
 
-	
+		}
+
 
 	public static void main(String[] args) {
 		GrilleNavale laGrille = new GrilleNavale(23, 5);
-		//Coordonnee c = new Coordonnee(4, 2);
-		//Navire titanic = new Navire(c, 2, false);
-		//System.out.println(titanic.toString());
-		//System.out.println(laGrille.recoitTir(c));
-		//Coordonnee c2 = new Coordonnee(4, 23);
-		//Coordonnee c3 = new Coordonnee(5, 15);
-		//System.out.println(laGrille.ajouteDansTirsRecus(c));
-		//System.out.println(laGrille.afficherTirs());
-		//System.out.println(laGrille.estDansTirsRecus(c2));
-		//System.out.println(laGrille.ajouteDansTirsRecus(c2));
-		//System.out.println(laGrille.afficherTirs());
-		//System.out.println(laGrille.estDansTirsRecus(c2));
-		//System.out.println(laGrille.estDansTirsRecus(c3));
-		//System.out.println(laGrille.ajouteDansTirsRecus(c3));
-		//System.out.println(laGrille.afficherTirs());
-		//System.out.println(laGrille.estDansTirsRecus(c3));
-		// System.out.println(laGrille.estDansGrille(c));
-
+		Coordonnee c = new Coordonnee(4, 2);
+		Navire titanic = new Navire(c, 2, false);
+		
 	}
 
 }
