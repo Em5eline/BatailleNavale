@@ -30,10 +30,26 @@ public class Coordonnee implements Comparable<Coordonnee> {
 	 */
 	
 	public Coordonnee(String s) {
-		this(s.charAt(0) - 'A',Integer.parseInt(s.substring(1, s.length()))-1);
+		if (s.equals("")) {
+			throw new IllegalArgumentException("Erreur chaîne vide");
+		}
+		
+		int l = Integer.parseInt(s.substring(1, s.length())) - 1;
+		
+		
+		if(s.length() != 2 && s.length() != 3) {
+			throw new IllegalArgumentException("Longueur incorrecte");
+		}
+		
+		if ( l < 0 || l > 25) {
+			throw new IllegalArgumentException("La ligne doit être comprise entre 0 et 25");
+		}
+			
+		this.colonne = s.charAt(0) - 'A';
+		this.ligne = Integer.parseInt(s.substring(1, s.length())) - 1;
 	}
 	
-	//METHODS
+	//METHODES
 	
 	/** Retourne une String exprimant this
 	 * 
@@ -85,19 +101,24 @@ public class Coordonnee implements Comparable<Coordonnee> {
 	 * 
 	 */
 	
+	
 	public int compareTo (Coordonnee c) {
-		if (c.ligne < this.ligne || ((c.ligne == this.ligne) && (c.colonne < this.colonne)))
-			return -1;
-		else if (c.ligne > this.ligne || ((c.ligne == this.ligne) && (c.colonne > this.colonne)))
-			return 1;
-		else 
+		if (this.ligne == c.ligne && this.colonne == c.colonne)
 			return 0;
+
+		if (this.ligne > c.ligne) {
+			return 1;
+		} else if (this.ligne < c.ligne) {
+			return -1;
+		} else
+			return this.colonne > c.colonne ? 1 : -1;
 	}
 	
-/*	public static void main(String[] args) {
+	
+	public static void main(String[] args) {
 		Coordonnee test1 = new Coordonnee(2,5);
 		Coordonnee test2 = new Coordonnee("C4");
 		System.out.println(test1);
-	}*/
+	}
 
 }
