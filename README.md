@@ -280,17 +280,16 @@ recoitTir de GrilleNavale OK :
 ```java
 public boolean recoitTir(Coordonnee c) {
 
-	for(int i=0; i<nbNavires; i++) {
-		System.out.println("dans le for");
-		if(navires[i].contient(c)) {
-			System.out.println("dans le if");
+	for (int i = 0; i < nbNavires; i++) {
+		if (navires[i].contient(c)) {
 			ajouteDansTirsRecus(c);
-			return true;			
+			navires[i].recoitTir(c);
+			return true;
 		}
 	}
 	ajouteDansTirsRecus(c);
 	return false;
-	}
+}
 ```
 estTouche OK
 ```java
