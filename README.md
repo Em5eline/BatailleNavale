@@ -1,6 +1,6 @@
 # Navire 
 Nouveau constructeur : 
-
+```java
 public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 
 	if (longueur <= 0)
@@ -26,10 +26,9 @@ public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 		}
 	}
 }
-
-# Navire : 
+```
 Nouvelle méthode touche(Navire n) :
-
+```java
 public boolean touche(Navire n) {
 		Coordonnee parcoursThis = this.debut;
 		Coordonnee parcoursN = n.debut;
@@ -106,7 +105,7 @@ public boolean touche(Navire n) {
 			return false;
 		
 	}
-
+```
 
 # BatailleNavale
 Projet programmation Java.
