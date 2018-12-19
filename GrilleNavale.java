@@ -200,9 +200,7 @@ s'affichant sur la console de la façon suivante :
 				else
 					verticalitude = false;
 				Navire nav = new Navire(coord, taillesNavires[i], verticalitude);
-				System.out.println(nav);
 				if (ajouteNavire(nav) == false) {
-					System.out.println("ca marche pas...");
 					i -= 1;
 				}
 
