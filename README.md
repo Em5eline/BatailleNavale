@@ -4,7 +4,7 @@ Nouveau constructeur :
 public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 
 	if (longueur <= 0)
-		throw new IllegalArgumentException("Ton navire a une longueur negative. La honte !");
+		throw new IllegalArgumentException("Ton navire n'existe pas. La honte !");
 	if (longueur > 5)
 		throw new IllegalArgumentException("Folie des grandeurs : pas de navire de plus de 5 cases !");
 	if (longueur == 1)
