@@ -180,6 +180,18 @@ public boolean recoitTir(Coordonnee c) {
 	return false;
 	}
 ```
+estTouche OK
+```java
+public boolean estTouche(Coordonnee c) {
+		for (int i = 0; i < nbNavires; i++) {
+			if (navires[i].recoitTir(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
+```
+
 Nouvelle méthode estALEau(Coordonnee c) :
 ```java
 public boolean estALEau(Coordonnee c) {
