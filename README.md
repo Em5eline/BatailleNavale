@@ -294,13 +294,13 @@ public boolean recoitTir(Coordonnee c) {
 estTouche OK
 ```java
 public boolean estTouche(Coordonnee c) {
-		for (int i = 0; i < nbNavires; i++) {
-			if (navires[i].estTouche(c)) {
-				return true;
-			}
+	for (int i = 0; i < nbNavires; i++) {
+		if (navires[i].estTouche(c)) {
+			return true;
 		}
-		return false;
 	}
+	return false;
+}
 ```
 
 Nouvelle méthode estALEau(Coordonnee c) :
@@ -311,40 +311,15 @@ public boolean estALEau(Coordonnee c) {
 ``` 
 Estcoule
 ```java
-public boolean estCoule(Coordonnee c) {
-	// pour chaque navire
+// pour chaque navire
 	for (int i = 0; i < nbNavires ; i++) {
 
-		// s'il est touché a cette coordonnée
-		if (this.estTouche(c)) {
-
-			// on récupère ses données
-			Coordonnee deb = navires[i].getDebut();
-			Coordonnee fin = navires[i].getFin();
-			int lgr;
-			int count = 0;
-
-			// on prend sa longueur : navire est vertical si colonne deb == colonne fin
-			if ((deb.getColonne() == fin.getColonne())) {
-				lgr = fin.getLigne() - deb.getLigne()+1;
-			// sinon il est horizontal
-			} else {
-				lgr = fin.getColonne() - deb.getColonne()+1;
-
-			}
-			// pour chaque tir recu dans la grille
-			for (int j = 0; j < nbTirsRecus; j++) {
-				// on compte le nombre de tirs recus par le navire
-				if (navires[i].contient(tirsRecus[j]))
-					count++;
-			} // fin for
-
-			if (count+1 == lgr)
+		if (navires[i].estTouche(c)) {
+			navires[i].recoitTir(c);
+			if (navires[i].estCoule())
 				return true;
-
-		} // fin if
+		} 
 	}
-
 	return false;
 }
 ```
