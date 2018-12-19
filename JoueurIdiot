@@ -1,3 +1,4 @@
+````java
 package batailleNavale;
 
 public class JoueurIdiot extends JoueurAuto{
@@ -63,6 +64,7 @@ public class JoueurIdiot extends JoueurAuto{
 				System.out.println(this.getNom() +" s'est fait trouer un bateau");
 			else 
 				System.out.println(this.getNom() +" a esquivé");
+				System.out.println(this.getGrille()+"\nGRILLE DU BOT");
 		}
 		
 		
@@ -103,3 +105,4 @@ public class JoueurIdiot extends JoueurAuto{
 		}
 
 	}
+```
