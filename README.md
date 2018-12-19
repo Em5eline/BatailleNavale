@@ -165,19 +165,19 @@ private boolean ajouteDansTirsRecus(Coordonnee c) {
 
 recoitTir de GrilleNavale OK :
 ```java
-	public boolean recoitTir(Coordonnee c) {
-			
-			for(int i=0; i<nbNavires; i++) {
-				System.out.println("dans le for");
-				if(navires[i].contient(c)) {
-					System.out.println("dans le if");
-					ajouteDansTirsRecus(c);
-					return true;			
-				}
-			}
+public boolean recoitTir(Coordonnee c) {
+
+	for(int i=0; i<nbNavires; i++) {
+		System.out.println("dans le for");
+		if(navires[i].contient(c)) {
+			System.out.println("dans le if");
 			ajouteDansTirsRecus(c);
-			return false;
-			}
+			return true;			
+		}
+	}
+	ajouteDansTirsRecus(c);
+	return false;
+	}
 ```
 
 TODO LIST:
