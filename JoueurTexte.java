@@ -16,7 +16,7 @@ public class JoueurTexte extends JoueurAvecGrille{
 	
 	protected void retourAttaque(Coordonnee c, int etat) {
 		if (etat == super.GAMEOVER)
-			System.out.println("Bravo" + this.getNom() + "t'as gagné");
+			System.out.println("Bravo" + this.getNom() + " t'as gagné");
 		else if (etat == super.COULE)
 			System.out.println(this.getNom() + " Tu as coulé un bateau");
 		else if (etat == super.TOUCHE)
@@ -27,7 +27,7 @@ public class JoueurTexte extends JoueurAvecGrille{
 
 	protected void retourDefense(Coordonnee c, int etat) {
 		if (etat == super.GAMEOVER)
-			System.out.println("T'as perdu!");
+			System.out.println("T'as perdu!" + this.getNom() + "déso :/");
 		else if (etat == super.COULE)
 			System.out.println("Ton bateau a coulé ");
 		else if (etat == super.TOUCHE)
