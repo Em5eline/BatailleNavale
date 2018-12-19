@@ -64,6 +64,8 @@ public abstract class Joueur {
 		if (this.adversaire != null || j.adversaire != null) { // vérification que les 2 joueurs ne sont pas utilisé
 			System.out.println("Un des joueurs joue déjà avec quelqu'un d'autre !");
 			return;
+		} else {
+			System.out.println("Début de la partie, que le sort puisse vous être favorable");
 		}
 		this.adversaire = j;
 		j.adversaire = this;
