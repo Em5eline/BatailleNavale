@@ -44,7 +44,7 @@ public class GrilleNavale {
 	
 	/**
 	 * Retourne une String représentant this. On souhaite obtenir une représentation
-	   s'affichant sur la console de la façon suivante :
+s'affichant sur la console de la façon suivante :
 					 A B C D E F G H I J
 					1 . . . . . . . . . .
 					2 . . . # # # . . . .
@@ -282,18 +282,17 @@ public class GrilleNavale {
 		 */
 	
 	public boolean recoitTir(Coordonnee c) {
-		
-		for(int i=0; i<nbNavires; i++) {
-			System.out.println("dans le for");
-			if(navires[i].contient(c)) {
-				System.out.println("dans le if");
+
+		for (int i = 0; i < nbNavires; i++) {
+			if (navires[i].contient(c)) {
 				ajouteDansTirsRecus(c);
-				return true;			
+				navires[i].recoitTir(c);
+				return true;
 			}
 		}
 		ajouteDansTirsRecus(c);
 		return false;
-		}
+	}
 
 		/**
 		 * Retourne true si et seulement si un des navires présents dans this a été touché en c.
@@ -302,12 +301,12 @@ public class GrilleNavale {
 		 */
 		
 	public boolean estTouche(Coordonnee c) {
-		int count = 0; // initialisation compte de navires touché
-		for (int i = 0; i < navires.length; i++) { // parcours de la totalité des navires de la grille
-			if (this.navires[i].estTouche(c)) // si le navire i de cette grille est touché en c
-					count++; // alors navire i touché et compte +1
+		for (int i = 0; i < nbNavires; i++) {
+			if (navires[i].estTouche(c)) {
+				return true;
+			}
 		}
-		return count == 1; // retourne vrai si un seul navire dans la grille a été touché en c
+		return false;
 	}
 
 		/**
@@ -327,13 +326,16 @@ public class GrilleNavale {
 		 */
 		
 		public boolean estCoule(Coordonnee c) {
-			int count = 0; // initialisation compte de navires coulés
-			for (int i = 0; i < navires.length; i++) { // parcours de la totalité des navires de la grille
-				if (this.navires[i].estCoule() && this.navires[i].estTouche(c)) // si le navire i de cette grille est coulé
-																				// et est touché en c
-					count++; // alors navire i coulé et compte +1
+			// pour chaque navire
+			for (int i = 0; i < nbNavires ; i++) {
+
+				if (navires[i].estTouche(c)) {
+					navires[i].recoitTir(c);
+					if (navires[i].estCoule())
+						return true;
+				} 
 			}
-			return count == 1; // retourne vrai si un seul navire dans la grille a été touché en c et coulé
+			return false;
 		}
 
 		/**
