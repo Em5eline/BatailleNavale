@@ -1,4 +1,5 @@
 # Navire 
+```java
 public void placementAuto(int[] taillesNavires) {
 		if (taillesNavires.length > navires.length)
 			throw new IllegalArgumentException("Trop de bâteaux pour cette grille");
@@ -26,7 +27,7 @@ public void placementAuto(int[] taillesNavires) {
 		}
 
 	}
-
+```
 ```java
 
 	public boolean touche(Navire n) {
