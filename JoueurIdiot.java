@@ -64,7 +64,10 @@ public class JoueurIdiot extends JoueurAuto{
 				System.out.println(this.getNom() +" s'est fait trouer un bateau");
 			else 
 				System.out.println(this.getNom() +" a esquivé");
-				System.out.println(this.getGrille()+"\nGRILLE DU BOT");
+				System.out.println(super.getGrille().toString().replace('#','.')+"\nGRILLE DU BOT");
+				
+
+
 		}
 		
 		
@@ -94,9 +97,11 @@ public class JoueurIdiot extends JoueurAuto{
 			int[] mesnavires2 = {3,3};
 			GrilleNavale grille1 = new GrilleNavale(4, mesnavires1);
 			GrilleNavale grille2 = new GrilleNavale(4, mesnavires2);
-			System.out.println(grille1+"\n"+"GRILLE DU BOT ");
-			System.out.println(grille2+"\n"+"GRILLE DE MOI ");
 			
+			
+			System.out.println(grille2+"\n"+"GRILLE DE MOI ");
+			System.out.println(grille1.toString().replace('#','.')+"\nGRILLE DU BOT");
+
 			JoueurIdiot bot = new JoueurIdiot(grille1, "StupidBot");
 			JoueurTexte THEBEST = new JoueurTexte(grille2, "toi là");
 			bot.jouerAvec(THEBEST);
@@ -105,4 +110,3 @@ public class JoueurIdiot extends JoueurAuto{
 		}
 
 	}
-
