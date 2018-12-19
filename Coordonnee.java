@@ -75,7 +75,7 @@ public class Coordonnee implements Comparable<Coordonnee> {
 	 */
 	
 	public boolean voisine (Coordonnee c) {
-		return ((c.ligne == this.ligne + 1 || c.ligne == this.ligne - 1) ^ (c.colonne == this.colonne + 1 || c.colonne == this.colonne - 1));
+		return (((c.ligne == this.ligne + 1 || c.ligne == this.ligne - 1) && (c.colonne == this.colonne)) ^ ((c.colonne == this.colonne + 1 || c.colonne == this.colonne - 1) && (c.ligne == this.ligne)));
 	}
 	
 	/**
