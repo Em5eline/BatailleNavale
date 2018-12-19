@@ -295,7 +295,7 @@ estTouche OK
 ```java
 public boolean estTouche(Coordonnee c) {
 		for (int i = 0; i < nbNavires; i++) {
-			if (navires[i].recoitTir(c)) {
+			if (navires[i].estTouche(c)) {
 				return true;
 			}
 		}
