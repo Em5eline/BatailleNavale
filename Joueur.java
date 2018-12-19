@@ -61,14 +61,14 @@ public abstract class Joueur {
 	 */
 
 	public void jouerAvec(Joueur j) {
-		if (this.adversaire != null || j.adversaire != null) {
+		if (this.adversaire != null || j.adversaire != null) { // vérification que les 2 joueurs ne sont pas utilisé
 			System.out.println("Un des joueurs joue déjà avec quelqu'un d'autre !");
 			return;
 		}
 		this.adversaire = j;
 		j.adversaire = this;
 		deroulementJeu(this, j);
-		this.adversaire = null;
+		this.adversaire = null; // si la partie est finie on réinitialise les joueurs à null
 		j.adversaire = null;
 	}
 
