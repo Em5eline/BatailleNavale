@@ -353,35 +353,35 @@ public boolean estCoule(Coordonnee c) {
 Nouvelle méthode perdu() : 
 ```java
 public boolean perdu() {
-		// pour chaque navire
-		for (int i = 0; i < nbNavires ; i++) {
-			// on récupère ses données
-			Coordonnee deb = navires[i].getDebut();
-			Coordonnee fin = navires[i].getFin();
-			int lgr;
-			int count = 0;
-			
-			// on prend sa longueur : navire est vertical si colonne deb == colonne fin
-			if ((deb.getColonne() == fin.getColonne())) {
-				lgr = fin.getLigne() - deb.getLigne()+1;
-			// sinon il est horizontal
-			} else {
-				lgr = fin.getColonne() - deb.getColonne()+1;
+	// pour chaque navire
+	for (int i = 0; i < nbNavires ; i++) {
+		// on récupère ses données
+		Coordonnee deb = navires[i].getDebut();
+		Coordonnee fin = navires[i].getFin();
+		int lgr;
+		int count = 0;
 
-			}
-			// pour chaque tir recu dans la grille
-			for (int j = 0; j < nbTirsRecus; j++) {
-				// on compte le nombre de tirs recus par le navire
-				if (navires[i].contient(tirsRecus[j]))
-					count++;
-			} // fin for
-			
-			if (count+1 != lgr)
-				return false;
-						
-		} // fin if
-		
-		return true;
-	}
+		// on prend sa longueur : navire est vertical si colonne deb == colonne fin
+		if ((deb.getColonne() == fin.getColonne())) {
+			lgr = fin.getLigne() - deb.getLigne()+1;
+		// sinon il est horizontal
+		} else {
+			lgr = fin.getColonne() - deb.getColonne()+1;
+
+		}
+		// pour chaque tir recu dans la grille
+		for (int j = 0; j < nbTirsRecus; j++) {
+			// on compte le nombre de tirs recus par le navire
+			if (navires[i].contient(tirsRecus[j]))
+				count++;
+		} // fin for
+
+		if (count+1 != lgr)
+			return false;
+
+	} // fin if
+
+	return true;
+}
 ```
 TODO LIST:
