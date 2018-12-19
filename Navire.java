@@ -27,7 +27,8 @@ public class Navire {
 			} else {
 				this.debut = new Coordonnee(debut.getColonne(), debut.getLigne());
 				this.fin = new Coordonnee(this.debut.getColonne(), longueur + this.debut.getLigne() - 1);
-
+				partiesTouchees=new Coordonnee [longueur];
+				nbTouchees=0;
 			}
 		} else {
 			if (longueur + debut.getColonne() > 25) {
@@ -35,6 +36,8 @@ public class Navire {
 			} else {
 				this.debut = new Coordonnee(debut.getColonne(), debut.getLigne());
 				this.fin = new Coordonnee(longueur + this.debut.getColonne() - 1, this.debut.getLigne());
+				partiesTouchees=new Coordonnee [longueur];
+				nbTouchees=0;
 			}
 		}
 	}
