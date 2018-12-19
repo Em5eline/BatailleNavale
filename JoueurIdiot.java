@@ -1,4 +1,4 @@
-````java
+
 package batailleNavale;
 
 public class JoueurIdiot extends JoueurAuto{
@@ -105,4 +105,4 @@ public class JoueurIdiot extends JoueurAuto{
 		}
 
 	}
-```
+
