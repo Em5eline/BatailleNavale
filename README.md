@@ -1,5 +1,34 @@
 # Navire 
+public void placementAuto(int[] taillesNavires) {
+		if (taillesNavires.length > navires.length)
+			throw new IllegalArgumentException("Trop de bâteaux pour cette grille");
+		else {
+			for (int i = 0; i < taillesNavires.length; i++) {
+				int col = (int) (Math.random() * taille);
+				int lig = (int) (Math.random() * taille);
+
+				Coordonnee coord = new Coordonnee(col, lig);
+				double orient = Math.random() + 0.05;
+				boolean verticalitude;
+				if (orient > 0.5)
+					verticalitude = true;
+				else
+					verticalitude = false;
+				Navire nav = new Navire(coord, taillesNavires[i], verticalitude);
+				System.out.println(nav);
+				if (ajouteNavire(nav) == false) {
+					System.out.println("ca marche pas...");
+					i -= 1;
+				}
+
+			}
+
+		}
+
+	}
+
 ```java
+
 	public boolean touche(Navire n) {
 		Coordonnee parcoursThis = this.debut;
 		Coordonnee parcoursN = n.debut;
