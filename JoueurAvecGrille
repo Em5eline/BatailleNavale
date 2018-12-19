@@ -1,0 +1,18 @@
+package batailleNavale;
+
+public abstract class JoueurAvecGrille extends Joueur{
+	
+	private GrilleNavale grille;
+	
+	public JoueurAvecGrille(GrilleNavale g, String nom) {
+		super(g.getTaille(), nom);
+	}
+
+	public JoueurAvecGrille(GrilleNavale g) {
+		super(g.getTaille());
+	}
+
+	public int defendre(Coordonnee c) {
+		
+	}
+}
