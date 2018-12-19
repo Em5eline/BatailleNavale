@@ -12,6 +12,9 @@ public abstract class JoueurAvecGrille extends Joueur{
 	public JoueurAvecGrille(GrilleNavale g) {
 		super(g.getTaille());
 	}
+	public GrilleNavale getGrille() {
+		return grille;
+	}
 
 	public int defendre(Coordonnee c) {
 		
