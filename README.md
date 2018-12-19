@@ -1,26 +1,4 @@
-# BatailleNavale
-Projet programmation Java.
-
-## Coordonnee
-CompareTo de coordonnee : 
-
-```java
-public int compareTo (Coordonnee c) {
-
-
-	if (this.ligne == c.ligne && this.colonne == c.colonne)
-		return 0;
-
-	if (this.ligne > c.ligne) {
-		return 1;
-	} else if (this.ligne < c.ligne) {
-		return -1;
-	} else
-		return this.colonne > c.colonne ? 1 : -1;
-}
-```
-
-## Navire 
+# Navire 
 Nouveau constructeur : 
 ```java
 public Navire(Coordonnee debut, int longueur, boolean estVertical) {
@@ -129,7 +107,32 @@ public boolean touche(Navire n) {
 	}
 ```
 
+# BatailleNavale
+Projet programmation Java.
+
+CompareTo de coordonnee : 
+
+	
+	public int compareTo (Coordonnee c) {
+
+		
+		if (this.ligne == c.ligne && this.colonne == c.colonne)
+			return 0;
+
+		if (this.ligne > c.ligne) {
+			return 1;
+		} else if (this.ligne < c.ligne) {
+			return -1;
+		} else
+			return this.colonne > c.colonne ? 1 : -1;
+	}
+
+
+
+
+
 ## Grille Navale
+
 
 ```java
 private boolean ajouteDansTirsRecus(Coordonnee c) {
@@ -160,4 +163,21 @@ private boolean ajouteDansTirsRecus(Coordonnee c) {
 }
 ```
 
-##TODO LIST:
+recoitTir de GrilleNavale OK :
+```java
+	public boolean recoitTir(Coordonnee c) {
+			
+			for(int i=0; i<nbNavires; i++) {
+				System.out.println("dans le for");
+				if(navires[i].contient(c)) {
+					System.out.println("dans le if");
+					ajouteDansTirsRecus(c);
+					return true;			
+				}
+			}
+			ajouteDansTirsRecus(c);
+			return false;
+			}
+```
+
+TODO LIST:
