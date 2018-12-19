@@ -113,7 +113,7 @@ Projet programmation Java.
 
 CompareTo de coordonnee : 
 
-	
+	```java
 	public int compareTo (Coordonnee c) {
 
 		
@@ -127,7 +127,7 @@ CompareTo de coordonnee :
 		} else
 			return this.colonne > c.colonne ? 1 : -1;
 	}
-
+```
 
 
 
