@@ -13,11 +13,17 @@ public class Navire {
 	 * @param longueur    : longueur du navire
 	 * @param estVertical : orientation du navire
 	 */
-
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
+		if (longueur <= 0)
+			throw new IllegalArgumentException("Ton navire a une longueur negative. La honte !");
+		if (longueur > 5)
+			throw new IllegalArgumentException("Folie des grandeurs : pas de navire de plus de 5 cases !");
+		if (longueur == 1)
+			throw new IllegalArgumentException("Quel timide ! Un navire doit faire plus d'une case !");
+		
 		if (estVertical) {
 			if (longueur + debut.getLigne() > 25) {
-				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
+				throw new IllegalArgumentException("Folie des grandeurs : le navire dépasse de la grille ! ");
 			} else {
 				this.debut = new Coordonnee(debut.getColonne(), debut.getLigne());
 				this.fin = new Coordonnee(this.debut.getColonne(), longueur + this.debut.getLigne() - 1);
@@ -25,7 +31,7 @@ public class Navire {
 			}
 		} else {
 			if (longueur + debut.getColonne() > 25) {
-				throw new IllegalArgumentException("Le bateau dépasse de la grille !");
+				throw new IllegalArgumentException("Folie des grandeurs : le navire dépasse de la grille !");
 			} else {
 				this.debut = new Coordonnee(debut.getColonne(), debut.getLigne());
 				this.fin = new Coordonnee(longueur + this.debut.getColonne() - 1, this.debut.getLigne());
