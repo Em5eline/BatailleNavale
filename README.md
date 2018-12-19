@@ -1,5 +1,5 @@
 # Navire 
-
+```java
 	public boolean touche(Navire n) {
 		Coordonnee parcoursThis = this.debut;
 		Coordonnee parcoursN = n.debut;
@@ -84,7 +84,7 @@
 
 	}
 	
-	
+```
 Nouveau constructeur : 
 ```java
 public Navire(Coordonnee debut, int longueur, boolean estVertical) {
