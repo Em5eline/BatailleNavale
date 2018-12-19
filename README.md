@@ -26,12 +26,6 @@ public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 		}
 	}
 }
-```
-Nouvelle méthode estALEau(Coordonnee c) :
-``` 
-public boolean estALEau(Coordonnee c) {
-	return !(this.estTouche(c));
-}
 
 ```
 Nouvelle méthode touche(Navire n) :
@@ -186,5 +180,11 @@ public boolean recoitTir(Coordonnee c) {
 	return false;
 	}
 ```
+Nouvelle méthode estALEau(Coordonnee c) :
+```java
+public boolean estALEau(Coordonnee c) {
+	return !(this.estTouche(c));
+}
+``` 
 
 TODO LIST:
