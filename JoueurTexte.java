@@ -34,7 +34,7 @@ public class JoueurTexte extends JoueurAvecGrille{
 			System.out.println("Ressaisis toi " + this.getNom() + " ton bateau est touché !!!");
 		else 
 			System.out.println("Plouf");
-		System.out.println(this.getGrille());
+	System.out.println(this.getGrille()+"\nGRILLE DU BOT");
 	}
 	
 	public Coordonnee choisirAttaque() {
