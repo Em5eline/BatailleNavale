@@ -1,11 +1,12 @@
 package batailleNavale;
 
-public class JoueurAuto extends JoueurAvecGrille {
+public abstract class JoueurAuto extends JoueurAvecGrille {
 	
 	//public final static int TOUCHE = 1;
 	//public final static int COULE = 2;
 	//public final static int A_L_EAU = 3;
 	//public final static int GAMEOVER = 4;
+	private GrilleNavale grille;
 	private Coordonnee dernierTir;
 	private boolean navireTouche = false;
 	private Coordonnee tirChoisi;
@@ -14,37 +15,19 @@ public class JoueurAuto extends JoueurAvecGrille {
 	
 	public JoueurAuto(GrilleNavale g, String nom) {
 		super(g,nom);
+		grille=super.getGrille();
 		
 		
 	}
 		
 	public JoueurAuto(GrilleNavale g) {
 		super(g, "Jack Sparrow");
+		grille=super.getGrille();
+
 		
 	}
 	
-	
-//	protected void retourAttaque(Coordonnee c, int etat) { //But : faire le bon choix pour le prochain tir
-//		if (etat == 1)
-//			dernierTir = c;
-//			navireTouche = true;
-//			System.out.println("Navire affaibli ! Il est touché en "+c);
-//		if(etat == 2)
-//			dernierTir = c;
-//			navireCoule = true;
-//			System.out.println("T'as défoncé son navire, GG");
-//		if(etat == 4)
-//			dernierTir = null;
-//			System.out.println("T'as tout défoncé fréro, t'es un vrai !");
-//			
-//	}
-//	
-//	
-//	protected void retourDefense(Coordonnee c, int etat) { //
-//		super.getGrille().recoitTir(c);
-//
-//	}
-	
+
 	protected void retourAttaque(Coordonnee c, int etat) {
 		if (etat == super.GAMEOVER)
 			System.out.println( this.getNom() +" a gagné!");
@@ -75,12 +58,9 @@ public class JoueurAuto extends JoueurAvecGrille {
 	public Coordonnee choisirAttaque() {
 		int ligne = (int) (Math.random() * super.getGrille().getTaille());
 		int colonne = (int) (Math.random() * super.getGrille().getTaille());
-		//if (navireTouche == false)
 		tirChoisi = new Coordonnee(colonne,ligne);
 		
-		//if (navireTouche == true)
-		//	if (est)
-		//	tirChoisi = new Coordonnee()
+		
 		System.out.println(this.getNom()+" attaque en: "+tirChoisi);
 		return tirChoisi;
 			
@@ -90,17 +70,7 @@ public class JoueurAuto extends JoueurAvecGrille {
 	
 	
 	public static void main(String[] args) {
-		int[] mesnavires1 = {3,3};
-		int[] mesnavires2 = {3,3};
-		GrilleNavale grille1 = new GrilleNavale(4, mesnavires1);
-		GrilleNavale grille2 = new GrilleNavale(4, mesnavires2);
-		System.out.println(grille1+"\n"+"GRILLE DU BOT ");
-		System.out.println(grille2+"\n"+"GRILLE DE MOI ");
-		
-		JoueurAuto bot = new JoueurAuto(grille1, "the bot");
-		JoueurTexte THEBEST = new JoueurTexte(grille2, "toi là");
-		bot.jouerAvec(THEBEST);
-		
+
 
 	}
 
