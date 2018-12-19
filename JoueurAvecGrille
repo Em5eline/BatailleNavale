@@ -12,7 +12,27 @@ public abstract class JoueurAvecGrille extends Joueur{
 		super(g.getTaille());
 	}
 
-	public int defendre(Coordonnee c) {
+	public int defendre(Coordonnee c) { //A tester et modifier quand les autres classe joueurs seront faites
 		
+		grille.recoitTir(c);
+		
+		if (grille.perdu())
+			return GAMEOVER;
+		else if (grille.estALEau(c))
+			return A_L_EAU;
+		else if (grille.estCoule(c))
+			return COULE;
+		else if (grille.estTouche(c)) 
+			return TOUCHE;
+		else
+			return -1; //si jamais erreur
+	}
+	
+	public static void main(String[] args) {
+		
+		GrilleNavale laGrille = new GrilleNavale(23, 5);
+		Coordonnee c = new Coordonnee(4, 2);
+		Navire titanic = new Navire(c, 2, false);
+	//	System.out.println(defendre(c));
 	}
 }
