@@ -282,5 +282,14 @@ public boolean estALEau(Coordonnee c) {
 	return !(this.estTouche(c));
 }
 ``` 
+Nouvelle méthode perdu() : 
+```java
+public boolean perdu() {
+	for (int i = 0; i < navires.length; i++)
+		if (!(navires[i].estCoule()))
+			return false;
+		return true;
 
+}
+```
 TODO LIST:
