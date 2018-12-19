@@ -1,6 +1,6 @@
 # Navire 
 
-public boolean touche(Navire n) {
+	public boolean touche(Navire n) {
 		Coordonnee parcoursThis = this.debut;
 		Coordonnee parcoursN = n.debut;
 		int colonneThis = this.fin.getColonne() - this.debut.getColonne();
@@ -9,60 +9,46 @@ public boolean touche(Navire n) {
 		int ligneN = n.fin.getLigne() - n.debut.getLigne();
 
 		if (colonneThis == 0) { // Si this est verticale
-			System.out.println("this verticale 1");
-			for (int i = 0; i < ligneThis+1; i++) { // pour chaque ligne de this
-				parcoursN = n.debut; //!!!!!!!!!!!
+			for (int i = 0; i < ligneThis + 1; i++) { // pour chaque ligne de this
+				parcoursN = n.debut;
 
 				if (colonneN == 0) { // et que n est verticale
-					System.out.println("n verticale 1");
-					for (int j = 0; j < ligneN+1 ; j++) { // pour chaque ligne de n
-						System.out.println("test en: N= "+parcoursN+"this= "+parcoursThis);
+					for (int j = 0; j < ligneN + 1; j++) { // pour chaque ligne de n
 
 						if (parcoursThis.voisine(parcoursN)) // on vérifie le voisinage
-							
+
 							return true;
 						else
-							System.out.println("parcours de N= " +parcoursN);
-
 							parcoursN = new Coordonnee(parcoursN.getColonne(), parcoursN.getLigne() + 1); // sinon on
-							System.out.println("parcours de N apres= " +parcoursN);
-								// augmente
+																											// augmente
 																											// la
 																											// ligne de
 																											// n
 					}
 				} else { // Si N est horizontale
-					System.out.println("n horizontale 1");
+					for (int j = 0; j < colonneN + 1; j++) { // Pour chaque colonne de N
 
-					for (int j = 0; j < colonneN+1 ; j++) { // Pour chaque colonne de N
-						parcoursN = n.debut;
-						if (parcoursThis.voisine(parcoursN)==true) {// on vérifie voisinage
-							System.out.println("c'est voisin en: N= "+parcoursN+"this= "+parcoursThis);
-							return true;}
-						else {
-							System.out.println("parcours de N= " +parcoursN);
-							parcoursN = new Coordonnee(parcoursN.getColonne() + 1, parcoursN.getLigne());} // sinon on
-																											// augmente
-																											// la
-																											// colonne
-																											// de n
+						if (parcoursThis.voisine(parcoursN) == true) {// on vérifie voisinage
+							return true;
+						} else {
+							parcoursN = new Coordonnee(parcoursN.getColonne() + 1, parcoursN.getLigne());
+						} // sinon on
+							// augmente
+							// la
+							// colonne
+							// de n
 
 					}
-
 				}
-				System.out.println("parcours de this= " +parcoursThis);
-
 				parcoursThis = new Coordonnee(parcoursThis.getColonne(), parcoursThis.getLigne() + 1); // On incrément
-				System.out.println("parcours de this apres= " +parcoursThis);
-																		// la ligne de
+																										// la ligne de
 																										// this
 			}
 		} else { // Si this est horizontale
-			System.out.println("this horizontale");
-			for (int i = 0; i < colonneThis+1 + 1; i++) { // pour chaque colonne de this
+			for (int i = 0; i < colonneThis + 1 + 1; i++) { // pour chaque colonne de this
+				parcoursN = n.debut;
 				if (colonneN == 0) { // et que n est verticale
-					System.out.println("n verticale");
-					for (int j = 0; j < ligneN+1 + 1; j++) { // pour chaque ligne de n
+					for (int j = 0; j < ligneN + 1 + 1; j++) { // pour chaque ligne de n
 						if (parcoursThis.voisine(parcoursN)) // on vérifie le voisinage
 							return true;
 						else
@@ -75,7 +61,6 @@ public boolean touche(Navire n) {
 																											// aprcoursThis
 					}
 				} else { // Si N est horizontale
-					System.out.println("n horizontal2");
 					for (int j = 0; j < colonneN + 1; j++) { // Pour chaque colonne de N
 						if (parcoursThis.voisine(parcoursN))// on vérifie voisinage
 							return true;
