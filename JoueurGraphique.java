@@ -2,7 +2,10 @@ package batailleNavale;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JOptionPane;
 
 public class JoueurGraphique extends JoueurAvecGrille {
@@ -86,14 +89,51 @@ public class JoueurGraphique extends JoueurAvecGrille {
 		grilleTirs.colorie(c, couleur);
 		switch (etat) {
 			case TOUCHE:
+				try {
+			        Clip clip = AudioSystem.getClip();
+			        clip.open(AudioSystem.getAudioInputStream(new File("explosion.wav")));
+			        clip.start();
+			    }
+			    catch (Exception exc) {
+			        exc.printStackTrace(System.out);
+			    }
 				JOptionPane.showMessageDialog(grilleTirs, "Un vrai sniper ! Tu as touché un navire en " + c);
 				break;
 			case COULE:
+				try {
+			        Clip clip = AudioSystem.getClip();
+			        clip.open(AudioSystem.getAudioInputStream(new File("bravo.wav")));
+			        clip.start();
+			    }
+			    catch (Exception exc) {
+			        exc.printStackTrace(System.out);
+			    }
 				JOptionPane.showMessageDialog(grilleTirs, "Tu es un machine de guerre ! Tu as coulé un navire en " + c);
 				break;
 			case GAMEOVER:
+				try {
+			        Clip clip = AudioSystem.getClip();
+			        clip.open(AudioSystem.getAudioInputStream(new File("titanic.wav")));
+			        clip.start();
+			    }
+			    catch (Exception exc) {
+			        exc.printStackTrace(System.out);
+			    }
 				JOptionPane.showMessageDialog(grilleTirs, "Tu as gagné !" + "\n" + "Et accessoirement tué 357 marins..."+"\n"+
-												"(Non je n'exagère pas, c'est un massacre)");
+																				  "(Non je n'exagère pas, c'est un massacre)");
+				break;
+			case A_L_EAU:
+				try {
+			        Clip clip = AudioSystem.getClip();
+			        clip.open(AudioSystem.getAudioInputStream(new File("ah.wav")));
+			        clip.start();
+			    }
+			    catch (Exception exc) {
+			        exc.printStackTrace(System.out);
+			    }
+break;
+				
+				
 		}
 	}
 	
@@ -102,9 +142,9 @@ public class JoueurGraphique extends JoueurAvecGrille {
 	
 	
 	public static void main(String[] args) {
-						//Test de Main\\
-		GrilleNavaleGraphique HomeSweetHome = new GrilleNavaleGraphique(10); // La où sont placés les bâteaux
-		GrilleGraphique Hell = new GrilleGraphique(10); // Là  où l'attaquant clique
+												//Test de Main\\
+		GrilleNavaleGraphique HomeSweetHome = new GrilleNavaleGraphique(10); // La oÃ¹ sont placÃ©s les bÃ¢teaux
+		GrilleGraphique Hell = new GrilleGraphique(10); // LÃ  oÃ¹ l'attaquant clique
 		GrilleNavaleGraphique Lautre = new GrilleNavaleGraphique(10);
 		int[] mesBébés = {2,4,3,3};
 		int[] sesMioches = {2,4,3,3};
