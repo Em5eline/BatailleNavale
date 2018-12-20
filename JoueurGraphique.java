@@ -50,5 +50,13 @@ public class JoueurGraphique extends JoueurAvecGrille {
 		}
 	}
 	
-
+	public static void main(String[] args) {
+		GrilleNavaleGraphique grille1 = new GrilleNavaleGraphique(10);
+		GrilleGraphique grille2 = new GrilleGraphique(10);
+		JoueurGraphique Emelinus = new JoueurGraphique(grille1,grille2,"Emelinus");
+		JoueurIdiot Teubé = new JoueurIdiot(grille1,"JeSuisBete");
+		Emelinus.jouerAvec(Teubé);
+	}
 }
+
+
