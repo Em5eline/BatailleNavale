@@ -44,6 +44,15 @@ public class FenetreJoueur extends JFrame {
 		*/
 	}
 
+	
+	
+	/**
+	 * permet d'obtenir une fenêtre pour un joueur de nom nom avec des grilles de taille taille.
+	   Un placement de navires automatique sur grilleDefense peut être réalisé.
+	 * @param nom : nom de la fenêtre
+	 * @param taille : taille des grilles
+	 */
+	
 	public FenetreJoueur(String nom, int taille) {
 		this.setTitle(nom);
 		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));		
@@ -51,6 +60,9 @@ public class FenetreJoueur extends JFrame {
 		grilleDefense = new GrilleNavaleGraphique(taille);
 		getContentPane().add(grilleTirs);
 		getContentPane().add(grilleDefense.getGrilleGraphique());
+		//int[]lesBateaux = {2,4,3,3};
+		//grilleDefense.placementAuto(lesBateaux);
+
 	}
 	
 	public GrilleGraphique getGrilleTirs() {
