@@ -67,7 +67,6 @@ public class JoueurGraphique extends JoueurAvecGrille {
 			break;
 	
 		case COULE: 
-			
 			JOptionPane.showMessageDialog(message, "Navire coulé !"," J'aurais les boules à ta place ", JOptionPane.WARNING_MESSAGE);
 			break;
 		
@@ -174,6 +173,3 @@ break;
 		velux.getGrilleDefense().placementAuto(sesMioches);
 		JackSparrow.jouerAvec(Teubé);
 	}
-}
-
-
