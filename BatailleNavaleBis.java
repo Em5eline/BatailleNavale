@@ -158,32 +158,28 @@ public class BatailleNavaleBis {
 			public void mouseClicked(MouseEvent e) {
 				
 				int taille = Integer.parseInt(tailleGrille.getText());
-				int navires[] = {2,3,3,3,3};				//    <--  /!\  POur définir les bateaux du bot  /!\
+				int navires[] = {2,3,4,5};
 				String nomJ1 = nomJoueur1.getText();
 				String nomJ2 = nomJoueur2.getText();
-				FenetreJoueur fenetre1 = new FenetreJoueur(nomJ1,taille);
-				FenetreJoueur fenetre2 = new FenetreJoueur(nomJ2,taille);
 				
 				if(rdbtnJoueurGraphique1.isSelected()) {
+					FenetreJoueur fenetre1 = new FenetreJoueur(nomJ1,taille);
 					J1 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(), nomJ1);
 					fenetre1.setVisible(true);
 				}else if(rdbtnJoueurTexte1.isSelected()){
 					J1 = new JoueurTexte(new GrilleNavale(taille,navires),nomJ1);
-					fenetre1.setVisible(true);
 				}else if(rdbtnJoueurAuto1.isSelected()){
 					J1 = new JoueurIdiot(new GrilleNavale(taille,navires),nomJ1);
-					fenetre1.setVisible(true);
 				}	
 				
 				if(rdbtnJoueurGraphique2.isSelected()){
-					J2 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(), nomJ2);
+					FenetreJoueur fenetre2 = new FenetreJoueur(nomJ2,taille);
+					J2 = new JoueurGraphique(fenetre2.getGrilleDefense(), fenetre2.getGrilleTirs(), nomJ2);
 					fenetre2.setVisible(true);
 				}else if(rdbtnJoueurTexte2.isSelected()){
 					J2 = new JoueurTexte(new GrilleNavale(taille,navires),nomJ2);
-					fenetre1.setVisible(true);
 				}else if(rdbtnJoueurAuto2.isSelected()){
 					J2 = new JoueurIdiot(new GrilleNavale(taille,navires),nomJ2);
-					fenetre1.setVisible(true);
 				}
 				demarrerPartie();
 			}
