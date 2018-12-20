@@ -1,195 +1,161 @@
 package batailleNavale;
 
-import java.awt.EventQueue;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.JRadioButton;
-import javax.swing.border.TitledBorder;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import javax.swing.ButtonGroup;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.*;
 
-public class BatailleNavaleBis {
 
-	private JFrame frmBatailleNavale;
-	private JTextField tailleGrille;
-	private JTextField nomJoueur1;
-	private JTextField nomJoueur2;
-	private final ButtonGroup buttonGroup1 = new ButtonGroup();
-	private final ButtonGroup buttonGroup2 = new ButtonGroup();
-	Joueur J1;
-	Joueur J2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BatailleNavaleBis window = new BatailleNavaleBis();
-					window.frmBatailleNavale.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+class JButtonCoordonnee extends JButton {
+	
+	private Coordonnee c;
+	public JButtonCoordonnee(Coordonnee c) {
+		this.c=c;
 	}
 	
-	private void demarrerPartie() {
-		new Thread() {
-			public void run() {
-				J1.jouerAvec(J2);
+	public Coordonnee getCoordonnee() {
+		return c;
+	}
+}
+/**
+ * Classe reprÃ©sentant un composant graphique "Grille". Une grille est composÃ©e
+ * de JButton
+ * 
+ * @author jerome.david@univ-grenoble-alpes.fr
+ * 
+ */
+public class GrilleGraphique extends JPanel implements ActionListener {
+
+	private static final long serialVersionUID = 8857166149660579225L;
+
+	/**
+	 * La matrice des boutons (cases de la grille)
+	 */
+	private JButton[][] cases;
+
+	/** 
+	 * La coordonnee actuellement selectionnÃ©e.
+	 * Null si aucune selection en cours
+	 */
+	private Coordonnee coordonneeSelectionnee;
+
+	/**
+	 * Initialise une grille carrÃ©e de taille donnÃ©e
+	 * 
+	 * @param taille
+	 *            la taille de la grille
+	 */
+	public GrilleGraphique(int taille) {
+		try {
+			// Certains LookAndFeels ne colorient pas les boutons.
+			// on choisi celui le plus simple (et le moins joli)
+			UIManager.setLookAndFeel(UIManager
+					.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+
+		this.setLayout(new GridLayout(taille + 1, taille + 1));
+
+		this.add(new JLabel());
+		for (int i = 0; i < taille; i++) {
+			JLabel lbl = new JLabel(String.valueOf((char) ('A' + i)));
+			lbl.setHorizontalAlignment(JLabel.CENTER);
+			this.add(lbl);
+		}
+		cases = new JButton[taille][taille];
+		for (int i = 0; i < taille; i++) {
+			JLabel lbl = new JLabel(String.valueOf(i + 1));
+			lbl.setHorizontalAlignment(JLabel.CENTER);
+			this.add(lbl);
+			for (int j = 0; j < taille; j++) {
+				cases[i][j] = new JButtonCoordonnee(new Coordonnee(i,j));
+				this.add(cases[i][j]);
+				cases[i][j].addActionListener(this);
 			}
-		}.start();
+		}
+		coordonneeSelectionnee=null;
 	}
 
 	/**
-	 * Create the application.
+	 * Colorie la case indiquÃ©e par la coordonnÃ©e
+	 * 
+	 * @param coord
+	 *            la coordonnÃ©e de la case Ã  colorier
+	 * @param color
+	 *            la couleur de la case
 	 */
-	public BatailleNavaleBis() {
-		initialize();
+	public void colorie(Coordonnee cord, Color color) {
+		cases[cord.getColonne()][cord.getLigne()].setBackground(color);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Colorie le rectangle compris entre les deux coordonnees
+	 * 
+	 * @param debut
+	 *            CoordonnÃ©e du dÃ©but de la zone Ã  colorier (haut gauche)
+	 * @param fin
+	 *            CoordonnÃ©e de la fin de la zone Ã  colorier (bas droit)
+	 * @param color
+	 *            la couleur de la case
 	 */
-	private void initialize() {
-		frmBatailleNavale = new JFrame();
-		frmBatailleNavale.setTitle("Bataille Navale");
-		frmBatailleNavale.setBounds(100, 100, 335, 360);
-		frmBatailleNavale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel panel = new JPanel();
-		frmBatailleNavale.getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new BorderLayout(0, 0));
-		
-		JPanel haut = new JPanel();
-		panel.add(haut, BorderLayout.NORTH);
-		
-		JLabel lblTailleGrille = new JLabel("Taille de grille");
-		haut.add(lblTailleGrille);
-		
-		tailleGrille = new JTextField();
-		haut.add(tailleGrille);
-		tailleGrille.setColumns(10);
-		
-		JPanel milieu = new JPanel();
-		panel.add(milieu, BorderLayout.CENTER);
-		milieu.setLayout(new BorderLayout(0, 0));
-		
-		JPanel joueur_1 = new JPanel();
-		joueur_1.setBorder(new TitledBorder(null, "Joueur 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		milieu.add(joueur_1, BorderLayout.NORTH);
-		joueur_1.setLayout(new BorderLayout(0, 0));
-		
-		JPanel nom1 = new JPanel();
-		joueur_1.add(nom1, BorderLayout.NORTH);
-		
-		JLabel lblNom = new JLabel("Nom : ");
-		nom1.add(lblNom);
-		
-		nomJoueur1 = new JTextField();
-		nom1.add(nomJoueur1);
-		nomJoueur1.setColumns(10);
-		
-		JPanel choix1 = new JPanel();
-		joueur_1.add(choix1, BorderLayout.SOUTH);
-		choix1.setLayout(new BorderLayout(0, 0));
-		
-		JRadioButton rdbtnJoueurGraphique1 = new JRadioButton("Joueur Graphique");
-		buttonGroup1.add(rdbtnJoueurGraphique1);
-		rdbtnJoueurGraphique1.setVerticalAlignment(SwingConstants.BOTTOM);
-		choix1.add(rdbtnJoueurGraphique1, BorderLayout.NORTH);
-		
-		JRadioButton rdbtnJoueurTexte1 = new JRadioButton("Joueur Texte");
-		buttonGroup1.add(rdbtnJoueurTexte1);
-		choix1.add(rdbtnJoueurTexte1, BorderLayout.CENTER);
-		
-		JRadioButton rdbtnJoueurAuto1 = new JRadioButton("Joueur Auto");
-		buttonGroup1.add(rdbtnJoueurAuto1);
-		choix1.add(rdbtnJoueurAuto1, BorderLayout.SOUTH);
-		
-		JPanel joueur_2 = new JPanel();
-		joueur_2.setBorder(new TitledBorder(null, "Joueur 2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		milieu.add(joueur_2, BorderLayout.SOUTH);
-		joueur_2.setLayout(new BorderLayout(0, 0));
-		
-		JPanel nom2 = new JPanel();
-		joueur_2.add(nom2, BorderLayout.NORTH);
-		
-		JLabel lblNom_1 = new JLabel("Nom : ");
-		nom2.add(lblNom_1);
-		
-		nomJoueur2 = new JTextField();
-		nom2.add(nomJoueur2);
-		nomJoueur2.setColumns(10);
-		
-		JPanel choix2 = new JPanel();
-		joueur_2.add(choix2, BorderLayout.SOUTH);
-		choix2.setLayout(new BorderLayout(0, 0));
-		
-		JRadioButton rdbtnJoueurGraphique2 = new JRadioButton("Joueur Graphique");
-		buttonGroup2.add(rdbtnJoueurGraphique2);
-		choix2.add(rdbtnJoueurGraphique2, BorderLayout.NORTH);
-		
-		JRadioButton rdbtnJoueurTexte2 = new JRadioButton("Joueur Texte");
-		buttonGroup2.add(rdbtnJoueurTexte2);
-		choix2.add(rdbtnJoueurTexte2, BorderLayout.CENTER);
-		
-		JRadioButton rdbtnJoueurAuto2 = new JRadioButton("Joueur Auto");
-		buttonGroup2.add(rdbtnJoueurAuto2);
-		choix2.add(rdbtnJoueurAuto2, BorderLayout.SOUTH);
-		
-		JPanel bas = new JPanel();
-		panel.add(bas, BorderLayout.SOUTH);
-		
-		JButton btnCommencerLaPartie = new JButton("Commencer la partie");
-		btnCommencerLaPartie.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				int taille = Integer.parseInt(tailleGrille.getText());
-				int navires[] = {2,3,4,5};
-				String nomJ1 = nomJoueur1.getText();
-				String nomJ2 = nomJoueur2.getText();
-				FenetreJoueur fenetre1 = new FenetreJoueur(nomJ1,taille);
-				FenetreJoueur fenetre2 = new FenetreJoueur(nomJ2,taille);
-				
-				if(rdbtnJoueurGraphique1.isSelected()) {
-					J1 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(), nomJ1);
-					fenetre1.setVisible(true);
-				}else if(rdbtnJoueurTexte1.isSelected()){
-					J1 = new JoueurTexte(new GrilleNavale(taille,navires),nomJ1);
-					fenetre1.setVisible(true);
-				}else if(rdbtnJoueurAuto1.isSelected()){
-					J1 = new JoueurAuto(new GrilleNavale(taille,navires),nomJ1);
-					fenetre1.setVisible(true);
-				}	
-				
-				if(rdbtnJoueurGraphique2.isSelected()){
-					J2 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(), nomJ2);
-					fenetre2.setVisible(true);
-				}else if(rdbtnJoueurTexte2.isSelected()){
-					J2 = new JoueurTexte(new GrilleNavale(taille,navires),nomJ2);
-					fenetre1.setVisible(true);
-				}else if(rdbtnJoueurAuto2.isSelected()){
-					J2 = new JoueurAuto(new GrilleNavale(taille,navires),nomJ2);
-					fenetre1.setVisible(true);
+	public void colorie(Coordonnee debut, Coordonnee fin, Color color) {
+		for (int i = debut.getLigne(); i <= fin.getLigne(); i++) {
+			for (int j = debut.getColonne(); j <= fin.getColonne(); j++) {
+				cases[i][j].setBackground(color);
+			}
+		}
+
+	}
+
+	@Override
+	public Dimension getPreferredSize() {
+		Dimension d = super.getPreferredSize();
+		d.setSize(d.width, d.width);
+		return d;
+	}
+
+	public void setClicActive(boolean active) {
+		SwingUtilities.invokeLater(() -> {
+			this.setEnabled(false);
+			for (JButton[] ligne : cases) {
+				for (JButton bt : ligne) {
+					bt.setEnabled(active);
 				}
-				demarrerPartie();
 			}
-			
+			this.setEnabled(true);
 		});
-		bas.add(btnCommencerLaPartie);
 	}
+
+
+	/**
+	 * Methode appelÃ©e lorsque l'on clique sur une case de la grille.
+	 * Elle "reveille" la mÃ©thode getCoordonneeSelectionnee
+	 * 
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.setClicActive(false);
+		coordonneeSelectionnee = ((JButtonCoordonnee) e.getSource()).getCoordonnee();
+		 synchronized (this) {
+	            this.notifyAll();
+	        }
+	}
+	
+	 /**
+     * Attend que l'utilisateur selectionne (clic) sur une case de la grille et
+     * retourne la coordonnee qui a Ã©tÃ© selectionnÃ©e
+     * @return la coordonnÃ©e selectionnÃ©e
+     */
+    public synchronized Coordonnee getCoordonneeSelectionnee() {
+        this.setClicActive(true);
+        try {
+            this.wait();
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+        return coordonneeSelectionnee;
+    }
 
 }
