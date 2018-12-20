@@ -60,7 +60,7 @@ public class FenetreJoueur extends JFrame {
 		grilleDefense = new GrilleNavaleGraphique(taille);
 		getContentPane().add(grilleTirs);
 		getContentPane().add(grilleDefense.getGrilleGraphique());
-		int[]lesBateaux = {2,4,3,3};
+		int[]lesBateaux = {2,4,3};       //     <----   /!\    Pour modifier les bateaux du bot     /!\
 		grilleDefense.placementAuto(lesBateaux);
 
 	}
