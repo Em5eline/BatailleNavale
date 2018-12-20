@@ -67,10 +67,19 @@ public class JoueurGraphique extends JoueurAvecGrille {
 			break;
 	
 		case COULE: 
+			
 			JOptionPane.showMessageDialog(message, "Navire coulé !"," J'aurais les boules à ta place ", JOptionPane.WARNING_MESSAGE);
 			break;
 		
 		case GAMEOVER:
+			try {
+		        Clip clip = AudioSystem.getClip();
+		        clip.open(AudioSystem.getAudioInputStream(new File("titanic.wav")));
+		        clip.start();
+		    }
+		    catch (Exception exc) {
+		        exc.printStackTrace(System.out);
+		    }
 			JOptionPane.showMessageDialog(message, "Tu as perdu !"," Goodbye my lover, goodbye my friend ", JOptionPane.WARNING_MESSAGE);
 			break;
 		
@@ -113,7 +122,7 @@ public class JoueurGraphique extends JoueurAvecGrille {
 			case GAMEOVER:
 				try {
 			        Clip clip = AudioSystem.getClip();
-			        clip.open(AudioSystem.getAudioInputStream(new File("titanic.wav")));
+			        clip.open(AudioSystem.getAudioInputStream(new File("gagne.wav")));
 			        clip.start();
 			    }
 			    catch (Exception exc) {
