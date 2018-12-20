@@ -15,7 +15,7 @@ public class Navire {
 	 */
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
 		
-		if(debut == null)
+		if (debut == null)
 			throw new IllegalArgumentException("Coordonnee debut doit être initialisée !");
 		
 		if (longueur <= 0)
