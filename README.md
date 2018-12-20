@@ -24,3 +24,21 @@ Main de la classe JoueurGraphique :
 				
 	}
 ```
+
+Pour mettre un son, dans le cas où le bateau est touché ( méthode retourattaque du joueurGraphique)
+```java
+case TOUCHE:
+			try
+		    {
+		        Clip clip = AudioSystem.getClip();
+		        clip.open(AudioSystem.getAudioInputStream(new File("pickle_rick.wav")));
+		        clip.start();
+		    }
+		    catch (Exception exc)
+		    {
+		        exc.printStackTrace(System.out);
+		    }
+			JOptionPane.showMessageDialog(grilleTirs,"Vous avez touchÃ© un navire en" +c);			
+			break;
+			
+```
