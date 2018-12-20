@@ -158,7 +158,7 @@ public class BatailleNavaleBis {
 			public void mouseClicked(MouseEvent e) {
 				
 				int taille = Integer.parseInt(tailleGrille.getText());
-				int navires[] = {2,3,4,5};
+				int navires[] = {2,3,3,3,3};				//    <--  /!\  POur définir les bateaux du bot  /!\
 				String nomJ1 = nomJoueur1.getText();
 				String nomJ2 = nomJoueur2.getText();
 				FenetreJoueur fenetre1 = new FenetreJoueur(nomJ1,taille);
@@ -176,14 +176,14 @@ public class BatailleNavaleBis {
 				}	
 				
 				if(rdbtnJoueurGraphique2.isSelected()){
-					J2 = new JoueurGraphique(fenetre2.getGrilleDefense(), fenetre2.getGrilleTirs(), nomJ2);
+					J2 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(), nomJ2);
 					fenetre2.setVisible(true);
 				}else if(rdbtnJoueurTexte2.isSelected()){
 					J2 = new JoueurTexte(new GrilleNavale(taille,navires),nomJ2);
-					fenetre2.setVisible(true);
+					fenetre1.setVisible(true);
 				}else if(rdbtnJoueurAuto2.isSelected()){
 					J2 = new JoueurIdiot(new GrilleNavale(taille,navires),nomJ2);
-					fenetre2.setVisible(true);
+					fenetre1.setVisible(true);
 				}
 				demarrerPartie();
 			}
