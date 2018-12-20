@@ -14,10 +14,8 @@ public class Navire {
 	 * @param estVertical : orientation du navire
 	 */
 	public Navire(Coordonnee debut, int longueur, boolean estVertical) {
-		
-		if (debut == null)
-			throw new IllegalArgumentException("Coordonnee debut doit être initialisée !");
-		
+		if ( debut ==null)
+			throw new IllegalArgumentException("PAs de valeurs null plz");			
 		if (longueur <= 0)
 			throw new IllegalArgumentException("Ton navire a une longueur negative. La honte !");
 		if (longueur > 5)
@@ -346,4 +344,3 @@ public class Navire {
 	}
 
 }
-
