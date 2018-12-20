@@ -78,6 +78,7 @@ public class BatailleNavale {
 		
 		
 		// CODE A COMPLETER : QUAND ON CLIQUE SUR LE BOUTON LANCER LA PARTIE IL SE PASSE CA CEST A DIRE PAS GRAND CHOSE 
+		//j'arrive pas à rentrer dans ce putain de if de merde là
 		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -90,7 +91,6 @@ public class BatailleNavale {
 			
 					if (rdbtnJoueurGraphique1.isSelected()) {
 						System.out.println("je suis là");
-						System.out.println(taille);
 						FenetreJoueur fenetre1 =new FenetreJoueur(nomJoueur1,taille);
 						joueur1 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(),nomJoueur1);
 						fenetre1.setVisible(true);
