@@ -85,6 +85,9 @@ public class Navire {
 	 */
 
 	public boolean contient(Coordonnee c) {
+		if (c==null)
+			throw new IllegalArgumentException();
+		else {
 		int colonne = fin.getColonne() - debut.getColonne();
 		int ligne = fin.getLigne() - debut.getLigne();
 		if (colonne == 0 && c.getLigne() >= debut.getLigne() && c.getLigne() <= fin.getLigne()
@@ -98,6 +101,7 @@ public class Navire {
 			return true;
 		} else
 			return false;
+		}
 	}
 
 	/**
@@ -108,6 +112,9 @@ public class Navire {
 	 */
 
 	public boolean touche(Navire n) {
+		if (n==null)
+			throw new IllegalArgumentException();
+		else {
 		Coordonnee parcoursThis = this.debut;
 		Coordonnee parcoursN = n.debut;
 		int colonneThis = this.fin.getColonne() - this.debut.getColonne();
@@ -152,7 +159,7 @@ public class Navire {
 																										// this
 			}
 		} else { // Si this est horizontale
-			for (int i = 0; i < colonneThis + 1; i++) { // pour chaque colonne de this
+			for (int i = 0; i < colonneThis + 1 ; i++) { // pour chaque colonne de this
 				parcoursN = n.debut;
 				if (colonneN == 0) { // et que n est verticale
 					for (int j = 0; j < ligneN + 1 + 1; j++) { // pour chaque ligne de n
@@ -188,7 +195,7 @@ public class Navire {
 			}
 		}
 		return false;
-
+		}
 	}
 
 	/**
@@ -198,6 +205,11 @@ public class Navire {
 	 */
 	
 	public boolean chevauche(Navire n) {
+		if (n==null) 
+			throw new IllegalArgumentException();
+		else {
+			
+		}
 		Coordonnee parcours = this.debut; // coordonnée de parcours
 		int colonne2 = this.fin.getColonne() - this.debut.getColonne();
 		int ligne2 = this.fin.getLigne() - this.debut.getLigne();
@@ -219,9 +231,10 @@ public class Navire {
 					parcours = new Coordonnee(parcours.getColonne() + 1, parcours.getLigne());
 			}
 		}
+		
 		return false;
-
 	}
+	
 
 	/**
 	 * Retourne true si et seulement si this contient c. Dans ce cas, c est ajoutée aux parties
@@ -329,3 +342,4 @@ public class Navire {
 	}
 
 }
+
