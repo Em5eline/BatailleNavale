@@ -10,11 +10,11 @@ class JButtonCoordonnee extends JButton {
 	
 	private Coordonnee c;
 	public JButtonCoordonnee(Coordonnee c) {
+		
 		this.c=c;
 	}
 	
-	public Coordonnee getCoordonnee() {
-		System.out.println("coordonnée de test: "+ c);
+	public Coordonnee getCoordonnee() {		
 		return c;
 	}
 }
@@ -71,7 +71,7 @@ public class GrilleGraphique extends JPanel implements ActionListener {
 			lbl.setHorizontalAlignment(JLabel.CENTER);
 			this.add(lbl);
 			for (int j = 0; j < taille; j++) {
-				cases[i][j] = new JButtonCoordonnee(new Coordonnee(i,j));
+				cases[i][j] = new JButtonCoordonnee(new Coordonnee(j,i));
 				this.add(cases[i][j]);
 				cases[i][j].addActionListener(this);
 			}
