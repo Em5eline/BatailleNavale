@@ -1,4 +1,4 @@
-package BatailleNavale;
+package batailleNavale;
 
 public class TestNavire {
 	
