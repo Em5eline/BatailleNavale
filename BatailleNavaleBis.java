@@ -176,14 +176,14 @@ public class BatailleNavaleBis {
 				}	
 				
 				if(rdbtnJoueurGraphique2.isSelected()){
-					J2 = new JoueurGraphique(fenetre1.getGrilleDefense(), fenetre1.getGrilleTirs(), nomJ2);
+					J2 = new JoueurGraphique(fenetre2.getGrilleDefense(), fenetre2.getGrilleTirs(), nomJ2);
 					fenetre2.setVisible(true);
 				}else if(rdbtnJoueurTexte2.isSelected()){
 					J2 = new JoueurTexte(new GrilleNavale(taille,navires),nomJ2);
-					fenetre1.setVisible(true);
+					fenetre2.setVisible(true);
 				}else if(rdbtnJoueurAuto2.isSelected()){
 					J2 = new JoueurIdiot(new GrilleNavale(taille,navires),nomJ2);
-					fenetre1.setVisible(true);
+					fenetre2.setVisible(true);
 				}
 				demarrerPartie();
 			}
