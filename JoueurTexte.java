@@ -16,39 +16,41 @@ public class JoueurTexte extends JoueurAvecGrille{
 	
 	protected void retourAttaque(Coordonnee c, int etat) {
 		if (etat == super.GAMEOVER)
-			System.out.println("Bravo" + this.getNom() + " t'as gagné");
+			System.out.println("T'as gagné!");
 		else if (etat == super.COULE)
-			System.out.println(this.getNom() + " Tu as coulé un bateau");
+			System.out.println("Tu as coulé un bateau");
 		else if (etat == super.TOUCHE)
-			System.out.println(this.getNom() + " Tu as touché un bateau en " + c);
+			System.out.println("Tu as touché un bateau");
 		else 
 			System.out.println("Plouf");
 	}
 
 	protected void retourDefense(Coordonnee c, int etat) {
 		if (etat == super.GAMEOVER)
-			System.out.println("T'as perdu!" + this.getNom() + "déso :/");
+			System.out.println("T'as perdu!");
 		else if (etat == super.COULE)
-			System.out.println("Ton bateau a coulé ");
+			System.out.println("Ton bateau a coulé");
 		else if (etat == super.TOUCHE)
-			System.out.println("Ressaisis toi " + this.getNom() + " ton bateau est touché !!!");
+			System.out.println("Ton bateau est touché");
 		else 
 			System.out.println("Plouf");
-	System.out.println(this.getGrille()+"\nGRILLE DU BOT");
+		System.out.println(this.getGrille()+"\nGRILLE DE MOI");
 	}
 	
 	public Coordonnee choisirAttaque() {
 		Scanner sc = new Scanner(System.in);
-		String attaque = new String();
-		System.out.println(this.getNom() + " tu peux choisir ton attaque :");
+		String attaque;
+		System.out.println(this.getNom() + " choisis ton attaque :");
 		attaque = sc.nextLine();
-		Coordonnee c = new Coordonnee(attaque);
-		
-		while (c.getLigne() > getGrille().getTaille()-1 || c.getColonne() > getGrille().getTaille()-1){
-			System.out.println(this.getNom() + " entre une valeur qui entre dans la grille stp ! (bolosse)");
+		if (attaque.length()!=2 && attaque.length()!=3) {
+			while (attaque.length()!=2 && attaque.length()!=3) {
+				System.out.println("Veuillez entrez une case au format 'A4' svp");
 			attaque = sc.nextLine();
-			c = new Coordonnee(attaque);
-		}
+		}}
+		Coordonnee c = new Coordonnee(attaque);
+		if (c.getColonne()>=this.getTailleGrille() || c.getLigne()>=this.getTailleGrille()) {
+			System.out.println("veuillez entrez une case de la grille");
+			this.choisirAttaque();}
 		
 		return c;
 	}
