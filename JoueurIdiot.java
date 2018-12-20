@@ -23,27 +23,6 @@ public class JoueurIdiot extends JoueurAuto{
 		}
 		
 		
-//		protected void retourAttaque(Coordonnee c, int etat) { //But : faire le bon choix pour le prochain tir
-//			if (etat == 1)
-//				dernierTir = c;
-//				navireTouche = true;
-//				System.out.println("Navire affaibli ! Il est touché en "+c);
-//			if(etat == 2)
-//				dernierTir = c;
-//				navireCoule = true;
-//				System.out.println("T'as défoncé son navire, GG");
-//			if(etat == 4)
-//				dernierTir = null;
-//				System.out.println("T'as tout défoncé fréro, t'es un vrai !");
-//				
-//		}
-	//	
-	//	
-//		protected void retourDefense(Coordonnee c, int etat) { //
-//			super.getGrille().recoitTir(c);
-	//
-//		}
-		
 		protected void retourAttaque(Coordonnee c, int etat) {
 			if (etat == super.GAMEOVER)
 				System.out.println( this.getNom() +" a gagné!");
