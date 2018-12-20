@@ -210,13 +210,52 @@ public class TestNavire {
 		
 	}
 	
+	public static void testRecoitTir() {
+		try {
+			System.out.println("Test recoitTir(Coordonnee c) avec c == null :");
+			Coordonnee espritFrappeur = null;
+			Navire blackPearl = new Navire(espritFrappeur,4,true);
+			blackPearl.recoitTir(espritFrappeur);
+			System.out.println("You lose, try again");		
+		} catch (IllegalArgumentException e) {
+			System.out.println("You win");
+		}
+		
+		System.out.println("Test recoitTir(Coordonnee c) - c etant dans navire :");
+		Coordonnee c1 = new Coordonnee ("B5");
+		Coordonnee c2 = new Coordonnee ("B3");
+		Navire n1 = new Navire(c2,3,true);
+		System.out.println("n1 recoitTir c1 = "+ n1.recoitTir(c1) + " TRUE ");
+		
+	}
 	
+	public static void testEstTouche() {
+		try {
+			System.out.println("Test estTouche(Coordonnee c) avec c == null :");
+			Coordonnee espritFrappeur = null;
+			Navire blackPearl = new Navire(espritFrappeur,4,true);
+			blackPearl.estTouche(espritFrappeur);
+			System.out.println("You lose, try again");		
+		} catch (IllegalArgumentException e) {
+			System.out.println("You win");
+		}
+		
+		System.out.println("Test estTouche(Coordonnee c) - c etant dans navire :");
+		Coordonnee c1 = new Coordonnee ("B5");
+		Coordonnee c2 = new Coordonnee ("B3");
+		Navire n1 = new Navire(c2,3,true);
+		n1.recoitTir(c1);
+		System.out.println("n1 estTouche c1 = "+ n1.estTouche(c1) + " TRUE ");
+		
+	}
 	
 	public static void main(String[] args) {
 		//testConstructeur();
 		//testContient();
-		testChevauche();
+		//testChevauche();
 		//testTouche();
+		//testRecoitTir();
+		testEstTouche();
 
 	}
 
