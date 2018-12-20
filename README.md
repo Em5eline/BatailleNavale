@@ -1,3 +1,5 @@
+METTEZ A JOUR VOTRE CLASSE GrilleGraphique SI VOS TIRS NE PARTENT PAS AU BON ENDROIT
+
 Main de la classe JoueurGraphique :
 ```java
 
