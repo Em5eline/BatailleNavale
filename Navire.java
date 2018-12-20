@@ -152,7 +152,7 @@ public class Navire {
 																										// this
 			}
 		} else { // Si this est horizontale
-			for (int i = 0; i < colonneThis + 1 + 1; i++) { // pour chaque colonne de this
+			for (int i = 0; i < colonneThis + 1; i++) { // pour chaque colonne de this
 				parcoursN = n.debut;
 				if (colonneN == 0) { // et que n est verticale
 					for (int j = 0; j < ligneN + 1 + 1; j++) { // pour chaque ligne de n
