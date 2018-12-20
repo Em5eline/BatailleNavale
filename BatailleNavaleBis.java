@@ -43,6 +43,14 @@ public class BatailleNavaleBis {
 			}
 		});
 	}
+	
+	private void demarrerPartie() {
+		new Thread() {
+			public void run() {
+				J1.jouerAvec(J2);
+			}
+		}.start();
+	}
 
 	/**
 	 * Create the application.
@@ -176,8 +184,10 @@ public class BatailleNavaleBis {
 				}else if(rdbtnJoueurAuto2.isSelected()){
 					J2 = new JoueurAuto(new GrilleNavale(taille,navires),nomJ2);
 					fenetre1.setVisible(true);
-				}	
+				}
+				demarrerPartie();
 			}
+			
 		});
 		bas.add(btnCommencerLaPartie);
 	}
