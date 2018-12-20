@@ -14,6 +14,7 @@ class JButtonCoordonnee extends JButton {
 	}
 	
 	public Coordonnee getCoordonnee() {
+		System.out.println("coordonnée de test: "+ c);
 		return c;
 	}
 }
@@ -87,7 +88,7 @@ public class GrilleGraphique extends JPanel implements ActionListener {
 	 *            la couleur de la case
 	 */
 	public void colorie(Coordonnee cord, Color color) {
-		cases[cord.getColonne()][cord.getLigne()].setBackground(color);
+		cases[cord.getLigne()][cord.getColonne()].setBackground(color);
 	}
 
 	/**
