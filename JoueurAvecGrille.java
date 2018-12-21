@@ -16,10 +16,21 @@ public abstract class JoueurAvecGrille extends Joueur{
 		return grille;
 	}
 
+	
 	public int defendre(Coordonnee c) {
 		
-	if(grille.recoitTir(c)) {
+	if(grille.recoitTir(c) && grille.estALEau(c))
+		return super.A_L_EAU;
+		else if(grille.recoitTir(c) && grille.perdu())
+			return super.GAMEOVER;
+		else if(grille.recoitTir(c) && grille.estCoule(c))
+			return super.COULE;
+		else 
+			return super.TOUCHE;
+			
 		
+	/*	
+	if(grille.recoitTir(c)) {
 		if (grille.estCoule(c)) 
 			if (grille.perdu()) {
 				return super.GAMEOVER;
@@ -30,8 +41,9 @@ public abstract class JoueurAvecGrille extends Joueur{
 			}
 	else 
 		return super.A_L_EAU;
-
+*/
 	}
+	
 	
 	public static void main(String[] args) {
 
