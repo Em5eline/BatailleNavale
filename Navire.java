@@ -249,23 +249,18 @@ public class Navire {
 		if (!this.contient(c))
 			return false;
 		else {
-			boolean dejavu = false;
-			int colonne = fin.getColonne() - debut.getColonne();
-			int ligne = fin.getLigne() - debut.getLigne();
-			int longueur = (colonne == 0) ? ligne + 1 : colonne + 1;
-			if (partiesTouchees == null) {
-				partiesTouchees = new Coordonnee[longueur];
+			for (int i = 0; i < partiesTouchees.length; i++) {
+				if (partiesTouchees[i]!=null) {
+				if (partiesTouchees[i].equals(c))
+					return false;
+				}
 			}
-			for (int i = 0; i < longueur; i++) {
-				if (partiesTouchees[i] == c)
-					dejavu = true;
-			}
-			if (!dejavu) {
 				nbTouchees += 1;
 				partiesTouchees[nbTouchees - 1] = c;
+				return true;
 			}
-			return true;
-		}
+			
+		
 	}
 	
 	/**
