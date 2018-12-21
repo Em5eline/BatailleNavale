@@ -2,7 +2,9 @@ package batailleNavale;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.InputStream;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -63,6 +65,14 @@ public class JoueurGraphique extends JoueurAvecGrille {
 		JOptionPane message = new JOptionPane();
 		switch(etat) {
 		case TOUCHE :
+			try {
+		        Clip clip = AudioSystem.getClip();
+		        clip.open(AudioSystem.getAudioInputStream(new File("caFaitMal.wav").getAbsoluteFile()));
+		        clip.start();
+		    }
+		    catch (Exception exc) {
+		        exc.printStackTrace(System.out);
+		    }
 			JOptionPane.showMessageDialog(message, "Touché en : "+c, " Pas cool ", JOptionPane.WARNING_MESSAGE);
 			break;
 	
@@ -73,7 +83,7 @@ public class JoueurGraphique extends JoueurAvecGrille {
 		case GAMEOVER:
 			try {
 		        Clip clip = AudioSystem.getClip();
-		        clip.open(AudioSystem.getAudioInputStream(new File("titanic.wav")));
+		        clip.open(AudioSystem.getAudioInputStream(new File("titanic.wav").getAbsoluteFile()));
 		        clip.start();
 		    }
 		    catch (Exception exc) {
@@ -81,10 +91,21 @@ public class JoueurGraphique extends JoueurAvecGrille {
 		    }
 			JOptionPane.showMessageDialog(message, "Tu as perdu !"," Goodbye my lover, goodbye my friend ", JOptionPane.WARNING_MESSAGE);
 			break;
+		case A_L_EAU:
+			try {	
+		        Clip clip = AudioSystem.getClip();
+		        clip.open(AudioSystem.getAudioInputStream(new File("ah.wav").getAbsoluteFile()));
+		        clip.start();
+		    }
+		    catch (Exception exc) {
+		        exc.printStackTrace(System.out);
+		    }
+			JOptionPane.showMessageDialog(grilleTirs,"Dans l'eau !"+"\n"+"Tu as gagné le droit de réessayer");
+			break;
+			
 		
 		}
 	}
-	
 	
 	
 	/**
@@ -93,13 +114,14 @@ public class JoueurGraphique extends JoueurAvecGrille {
 	 */
 	
 	protected void retourAttaque(Coordonnee c, int etat) {
+		
 		Color couleur = etat == A_L_EAU ? Color.BLUE : Color.RED;
 		grilleTirs.colorie(c, couleur);
 		switch (etat) {
 			case TOUCHE:
 				try {
 			        Clip clip = AudioSystem.getClip();
-			        clip.open(AudioSystem.getAudioInputStream(new File("explosion.wav")));
+			        clip.open(AudioSystem.getAudioInputStream(new File("explosion.wav").getAbsoluteFile()));
 			        clip.start();
 			    }
 			    catch (Exception exc) {
@@ -110,7 +132,7 @@ public class JoueurGraphique extends JoueurAvecGrille {
 			case COULE:
 				try {
 			        Clip clip = AudioSystem.getClip();
-			        clip.open(AudioSystem.getAudioInputStream(new File("bravo.wav")));
+			        clip.open(AudioSystem.getAudioInputStream(new File("bravo.wav").getAbsoluteFile()));
 			        clip.start();
 			    }
 			    catch (Exception exc) {
@@ -121,7 +143,7 @@ public class JoueurGraphique extends JoueurAvecGrille {
 			case GAMEOVER:
 				try {
 			        Clip clip = AudioSystem.getClip();
-			        clip.open(AudioSystem.getAudioInputStream(new File("gagne.wav")));
+			        clip.open(AudioSystem.getAudioInputStream(new File("gagne.wav").getAbsoluteFile()));
 			        clip.start();
 			    }
 			    catch (Exception exc) {
@@ -131,17 +153,16 @@ public class JoueurGraphique extends JoueurAvecGrille {
 																				  "(Non je n'exagère pas, c'est un massacre)");
 				break;
 			case A_L_EAU:
-				try {
+				try {	
 			        Clip clip = AudioSystem.getClip();
-			        clip.open(AudioSystem.getAudioInputStream(new File("ah.wav")));
+			        clip.open(AudioSystem.getAudioInputStream(new File("ah.wav").getAbsoluteFile()));
 			        clip.start();
 			    }
 			    catch (Exception exc) {
 			        exc.printStackTrace(System.out);
 			    }
-break;
-				
-				
+				JOptionPane.showMessageDialog(grilleTirs,"Dans l'eau !"+"\n"+"Tu as gagné le droit de réessayer");
+				break;				
 		}
 	}
 	
@@ -173,3 +194,4 @@ break;
 		velux.getGrilleDefense().placementAuto(sesMioches);
 		JackSparrow.jouerAvec(Teubé);
 	}
+}
