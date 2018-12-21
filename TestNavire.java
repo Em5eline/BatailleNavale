@@ -224,8 +224,30 @@ public class TestNavire {
 		System.out.println("Test recoitTir(Coordonnee c) - c etant dans navire :");
 		Coordonnee c1 = new Coordonnee ("B5");
 		Coordonnee c2 = new Coordonnee ("B3");
+		Coordonnee c4 = new Coordonnee ("B4");
+		Coordonnee c5 = new Coordonnee ("B5");
+		Coordonnee c6 = new Coordonnee ("B6");
+
+		Coordonnee c3 = new Coordonnee ("C3");
+
 		Navire n1 = new Navire(c2,3,true);
 		System.out.println("n1 recoitTir c1 = "+ n1.recoitTir(c1) + " TRUE ");
+		System.out.println(n1.afficherTab());
+		System.out.println("n1 recoitTir c2 = "+ n1.recoitTir(c2) + " TRUE ");
+		System.out.println(n1.afficherTab());
+
+		System.out.println("n1 recoitTir c4 = "+ n1.recoitTir(c4) + " TRUE ");
+		System.out.println(n1.afficherTab());
+
+		System.out.println("n1 recoitTir c5 = "+ n1.recoitTir(c5) + " TRUE ");
+		System.out.println(n1.afficherTab());
+
+		System.out.println("n1 recoitTir c6 = "+ n1.recoitTir(c6) + " TRUE ");
+		System.out.println("n1 recoitTir c3 = "+ n1.recoitTir(c3) + " FALSE ");
+
+		System.out.println(n1.afficherTab());
+
+
 		
 	}
 	
@@ -254,8 +276,8 @@ public class TestNavire {
 		//testContient();
 		//testChevauche();
 		//testTouche();
-		//testRecoitTir();
-		testEstTouche();
+		testRecoitTir();
+		//testEstTouche();
 
 	}
 
